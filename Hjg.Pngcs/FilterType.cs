@@ -4,7 +4,7 @@
 // Based on original work:
 //   Copyright 2012    Hernán J. González    hgonzalez@gmail.com
 //   Licensed under the Apache License, Version 2.0
-//   
+//
 //   You should have received a copy of the Apache License 2.0
 //   along with the program.
 //   If not, see <http://www.apache.org/licenses/LICENSE-2.0>
@@ -22,21 +22,15 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-namespace Hjg.Pngcs {
-
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Runtime.CompilerServices;
-
+namespace Hjg.Pngcs
+{
     /// <summary>
     /// Internal PNG predictor filter, or a strategy to select it.
     /// </summary>
-    public enum FilterType {
+    public enum FilterType
+    {
         /// <summary>
-        /// No filtering 
+        /// No filtering
         /// </summary>
         FILTER_NONE = 0,
         /// <summary>
@@ -59,7 +53,7 @@ namespace Hjg.Pngcs {
         /// <summary>
         /// Default strategy: select one of the standard filters depending on global image parameters
         /// </summary>
-        FILTER_DEFAULT = -1, // 
+        FILTER_DEFAULT = -1, //
 
 
         /// <summary>
@@ -78,7 +72,7 @@ namespace Hjg.Pngcs {
         FILTER_CYCLIC = -50,
 
         /// <summary>
-        /// Not specified, placeholder for unknown or NA filters. 
+        /// Not specified, placeholder for unknown or NA filters.
         /// </summary>
         FILTER_UNKNOWN = -100
     }

@@ -4,7 +4,7 @@
 // Based on original work:
 //   Copyright 2012    Hernán J. González    hgonzalez@gmail.com
 //   Licensed under the Apache License, Version 2.0
-//   
+//
 //   You should have received a copy of the Apache License 2.0
 //   along with the program.
 //   If not, see <http://www.apache.org/licenses/LICENSE-2.0>
@@ -22,23 +22,20 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-namespace SamplesTests {
+namespace SamplesTests
+{
 
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Runtime.CompilerServices;
     using Hjg.Pngcs;
-    using Hjg.Pngcs.Chunks;
 
     /**
  * prints all chunks (remember that IDAT is shown as only one pseudo zero-length chunk)
  */
-    public class SampleShowChunks {
+    public class SampleShowChunks
+    {
 
-        public static void showChunks(String file) {
+        public static void showChunks(String file)
+        {
             PngReader pngr = FileHelper.CreatePngReader(file);
             pngr.MaxTotalBytesRead = 1024 * 1024 * 1024L * 3; // 3Gb!
             pngr.ReadSkippingAllRows();

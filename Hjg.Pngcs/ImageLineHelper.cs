@@ -4,7 +4,7 @@
 // Based on original work:
 //   Copyright 2012    Hernán J. González    hgonzalez@gmail.com
 //   Licensed under the Apache License, Version 2.0
-//   
+//
 //   You should have received a copy of the Apache License 2.0
 //   along with the program.
 //   If not, see <http://www.apache.org/licenses/LICENSE-2.0>
@@ -25,21 +25,16 @@
 namespace Hjg.Pngcs
 {
 
-    using Hjg.Pngcs.Chunks;
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Runtime.CompilerServices;
+    using Hjg.Pngcs.Chunks;
 
     /// <summary>
-    /// Bunch of utility static methods to process/analyze an image line. 
-    /// 
+    /// Bunch of utility static methods to process/analyze an image line.
+    ///
     /// Not essential at all, some methods are probably to be removed if future releases.
-    /// 
+    ///
     /// TODO: document this better
-    /// 
+    ///
     /// </summary>
     ///
     public class ImageLineHelper
@@ -95,19 +90,19 @@ namespace Hjg.Pngcs
             return ((a) << 24) | ((r) << 16) | ((g) << 8) | (b);
         }
 
-         public static int ToARGB8(int[] buff, int offset, bool alpha)
-         {
+        public static int ToARGB8(int[] buff, int offset, bool alpha)
+        {
             return alpha
                 ? ToARGB8(buff[offset++], buff[offset++], buff[offset++], buff[offset])
                 : ToARGB8(buff[offset++], buff[offset++], buff[offset]);
-         }
+        }
 
-         public static int ToARGB8(byte[] buff, int offset, bool alpha)
-         {
+        public static int ToARGB8(byte[] buff, int offset, bool alpha)
+        {
             return alpha
                 ? ToARGB8(buff[offset++], buff[offset++], buff[offset++], buff[offset])
                 : ToARGB8(buff[offset++], buff[offset++], buff[offset]);
-         }
+        }
 
         public static void FromARGB8(int val, int[] buff, int offset, bool alpha)
         {
@@ -203,8 +198,8 @@ namespace Hjg.Pngcs
         }
 
         /**
-         * [0,1)
-         */
+        * [0,1)
+        */
         public static double ClampDouble(double i)
         {
             return i < 0 ? 0 : (i >= 1 ? 0.999999 : i);

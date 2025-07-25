@@ -4,7 +4,7 @@
 // Based on original work:
 //   Copyright 2012    Hernán J. González    hgonzalez@gmail.com
 //   Licensed under the Apache License, Version 2.0
-//   
+//
 //   You should have received a copy of the Apache License 2.0
 //   along with the program.
 //   If not, see <http://www.apache.org/licenses/LICENSE-2.0>
@@ -22,29 +22,30 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-using Hjg.Pngcs;
-using Hjg.Pngcs.Zlib;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
-using System.Text;
+using Hjg.Pngcs.Zlib;
 
-namespace TestNet45 {
-    
-    class TestZlib {
+namespace TestNet45
+{
+
+    class TestZlib
+    {
 
         // this generates 2000 files!
-        static public void testGenerateAll() {
+        static public void testGenerateAll()
+        {
             long t0 = Environment.TickCount;
             Random r = new Random();
-            for (int n = 0; n < 2000; n++) {
+            for (int n = 0; n < 2000; n++)
+            {
                 Stream bos = new FileStream("C:/temp/z/zlibcs" + n + ".bin", FileMode.Create);
                 AZlibOutputStream ost = ZlibStreamFactory.createZlibOutputStream(bos, false);
                 if (n == 0) Console.WriteLine("Using: " + ost);
                 byte[] b = createBytes7(n < 50 ? n : n * n - 7);
                 int offset = 0;
-                while (offset < b.Length) {
+                while (offset < b.Length)
+                {
                     int len = r.Next(b.Length - offset) + 1;
                     ost.Write(b, offset, len);
                     offset += len;
@@ -58,9 +59,11 @@ namespace TestNet45 {
 
 
 
-        static public void testReadall() {
+        static public void testReadall()
+        {
             long t0 = Environment.TickCount;
-            for (int n = 0; n < 2000; n++) {
+            for (int n = 0; n < 2000; n++)
+            {
                 String f = "C:/temp/z/zlibcs" + n + ".bin";
                 Stream bos = new FileStream(f, FileMode.Open);
                 AZlibInputStream ist = ZlibStreamFactory.createZlibInputStream(bos, false);
@@ -69,7 +72,8 @@ namespace TestNet45 {
                 long expectedlen = n < 50 ? n : n * n - 7;
                 if (res.Length != expectedlen)
                     throw new Exception("error 0: " + f + " expected:" + expectedlen + " len=" + res.Length);
-                for (int i = 0; i < expectedlen; i++) {
+                for (int i = 0; i < expectedlen; i++)
+                {
                     if ((res[i] & 0xff) != ((i * 7) & 0xff))
                         throw new Exception("error 1: " + f);
                 }
@@ -79,11 +83,13 @@ namespace TestNet45 {
             Console.WriteLine("read 3000 files in " + (t1 - t0));
         }
 
-        private static byte[] readAll(Stream ist) {
+        private static byte[] readAll(Stream ist)
+        {
             MemoryStream bos = new MemoryStream();
             int c;
             byte[] buf = new byte[1000];
-            while ((c = ist.Read(buf, 0, 1000)) > 0) {
+            while ((c = ist.Read(buf, 0, 1000)) > 0)
+            {
                 bos.Write(buf, 0, c);
             }
             return bos.ToArray();
@@ -94,7 +100,8 @@ val= 3066839698
 val= 0
 val= 3799812176 t=14446
  */
-        static public void testCRC32() {
+        static public void testCRC32()
+        {
             CRC32 crc1 = new CRC32();
             crc1.Update(new byte[] { 1, 2 });
             if (crc1.GetValue() != 3066839698) throw new Exception("Bad CRC32!");
@@ -106,11 +113,13 @@ val= 3799812176 t=14446
             Random r = new Random();
             byte[] all = new byte[2000 * 4];
             long t0 = Environment.TickCount;
-            for (int n = 0; n < 2000; n++) {
+            for (int n = 0; n < 2000; n++)
+            {
                 byte[] b = createBytes7(n < 50 ? n : n * n - 7);
                 CRC32 crc = new CRC32();
                 int offset = 0;
-                while (offset < b.Length) {
+                while (offset < b.Length)
+                {
                     int len = r.Next(b.Length - offset) + 1;
                     crc.Update(b, offset, len);
                     offset += len;
@@ -133,8 +142,9 @@ val= 3799812176 t=14446
 val= 393220
 val= 1
 val= 3817105751 t=10982
-         */
-        static public void testAdler() {
+        */
+        static public void testAdler()
+        {
             Console.WriteLine("Testing Adler32");
             Adler32 crc1 = new Adler32();
             crc1.Update(new byte[] { 1, 2 });
@@ -146,11 +156,13 @@ val= 3817105751 t=10982
             Random r = new Random();
             byte[] all = new byte[2000 * 4];
             long t0 = Environment.TickCount;
-            for (int n = 0; n < 2000; n++) {
+            for (int n = 0; n < 2000; n++)
+            {
                 byte[] b = createBytes7(n < 50 ? n : n * n - 7);
                 Adler32 crc = new Adler32();
                 int offset = 0;
-                while (offset < b.Length) {
+                while (offset < b.Length)
+                {
                     int len = r.Next(b.Length - offset) + 1;
                     crc.Update(b, offset, len);
                     offset += len;
@@ -159,7 +171,7 @@ val= 3817105751 t=10982
                 all[n * 4] = (byte)((x >> 24) & 0xff);
                 all[n * 4 + 1] = (byte)((x >> 16) & 0xff);
                 all[n * 4 + 2] = (byte)((x >> 8) & 0xff);
-                all[n * 4 + 3] = (byte)((x ) & 0xff);
+                all[n * 4 + 3] = (byte)((x) & 0xff);
             }
             long t1 = Environment.TickCount;
             Adler32 a = new Adler32();
@@ -169,20 +181,22 @@ val= 3817105751 t=10982
             if (v != 3817105751) throw new Exception("Bad Adler32");// tested with Java CRC32
         }
 
-        private static byte[] createByteAscending(int n) {
+        private static byte[] createByteAscending(int n)
+        {
             byte[] b = new byte[n];
             for (int i = 0; i < n; i++)
                 b[i] = (byte)i;
             return b;
         }
 
-        private static byte[] createBytes7(int n) {
+        private static byte[] createBytes7(int n)
+        {
             byte[] b = new byte[n];
             for (int i = 0; i < n; i++)
                 b[i] = (byte)(i * 7);
             return b;
         }
 
-       
+
     }
 }

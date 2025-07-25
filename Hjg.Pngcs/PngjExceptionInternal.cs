@@ -4,7 +4,7 @@
 // Based on original work:
 //   Copyright 2012    Hernán J. González    hgonzalez@gmail.com
 //   Licensed under the Apache License, Version 2.0
-//   
+//
 //   You should have received a copy of the Apache License 2.0
 //   along with the program.
 //   If not, see <http://www.apache.org/licenses/LICENSE-2.0>
@@ -22,36 +22,37 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-namespace Hjg.Pngcs {
+namespace Hjg.Pngcs
+{
 
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Runtime.CompilerServices;
 
     /// <summary>
     /// Exception for internal problems
     /// </summary>
     [Serializable]
-    public class PngjExceptionInternal : Exception {
+    public class PngjExceptionInternal : Exception
+    {
         private const long serialVersionUID = 1L;
 
         public PngjExceptionInternal()
-            : base() {
+            : base()
+        {
         }
 
         public PngjExceptionInternal(String message, Exception cause)
-            : base(message, cause) {
+            : base(message, cause)
+        {
         }
 
         public PngjExceptionInternal(String message)
-            : base(message) {
+            : base(message)
+        {
         }
 
         public PngjExceptionInternal(Exception cause)
-            : base(cause.Message, cause) {
+            : base(cause.Message, cause)
+        {
         }
     }
 }

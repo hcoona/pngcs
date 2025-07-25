@@ -4,7 +4,7 @@
 // Based on original work:
 //   Copyright 2012    Hernán J. González    hgonzalez@gmail.com
 //   Licensed under the Apache License, Version 2.0
-//   
+//
 //   You should have received a copy of the Apache License 2.0
 //   along with the program.
 //   If not, see <http://www.apache.org/licenses/LICENSE-2.0>
@@ -22,41 +22,43 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-namespace Hjg.Pngcs.Chunks {
+namespace Hjg.Pngcs.Chunks
+{
 
-    using Hjg.Pngcs;
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Runtime.CompilerServices;
+    using Hjg.Pngcs;
     /// <summary>
     /// IDAT chunk http://www.w3.org/TR/PNG/#11IDAT
-    /// 
+    ///
     /// This object is dummy placeholder - We treat this chunk in a very different way than ancillary chnks
     /// </summary>
-    public class PngChunkIDAT : PngChunkMultiple {
+    public class PngChunkIDAT : PngChunkMultiple
+    {
         public const String ID = ChunkHelper.IDAT;
 
-        public PngChunkIDAT(ImageInfo i,int len, long offset)
-            : base(ID, i) {
+        public PngChunkIDAT(ImageInfo i, int len, long offset)
+            : base(ID, i)
+        {
             this.Length = len;
             this.Offset = offset;
         }
 
-        public override ChunkOrderingConstraint GetOrderingConstraint() {
+        public override ChunkOrderingConstraint GetOrderingConstraint()
+        {
             return ChunkOrderingConstraint.NA;
         }
 
-        public override ChunkRaw CreateRawChunk() {// does nothing
+        public override ChunkRaw CreateRawChunk()
+        {// does nothing
             return null;
         }
 
-        public override void ParseFromRaw(ChunkRaw c) { // does nothing
+        public override void ParseFromRaw(ChunkRaw c)
+        { // does nothing
         }
 
-        public override void CloneDataFromRead(PngChunk other) {
+        public override void CloneDataFromRead(PngChunk other)
+        {
         }
     }
 }

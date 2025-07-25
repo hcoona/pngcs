@@ -4,7 +4,7 @@
 // Based on original work:
 //   Copyright 2012    Hernán J. González    hgonzalez@gmail.com
 //   Licensed under the Apache License, Version 2.0
-//   
+//
 //   You should have received a copy of the Apache License 2.0
 //   along with the program.
 //   If not, see <http://www.apache.org/licenses/LICENSE-2.0>
@@ -23,18 +23,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Hjg.Pngcs;
 
 
-namespace SamplesTests {
+namespace SamplesTests
+{
 
-    public class TestsHelper {
+    public class TestsHelper
+    {
 
-        static string tempDir  = "C:/temp";
+        static string tempDir = "C:/temp";
 
-        public static void testEqual(String image1, String image2) {
+        public static void testEqual(String image1, String image2)
+        {
             PngReader png1 = FileHelper.CreatePngReader(image1);
             PngHelperInternal.InitCrcForTests(png1);
             PngReader png2 = FileHelper.CreatePngReader(image2);
@@ -56,7 +57,8 @@ namespace SamplesTests {
         }
 
 
-        public static void testCrcEquals(string image1, long crc) {
+        public static void testCrcEquals(string image1, long crc)
+        {
             PngReader png1 = FileHelper.CreatePngReader(image1);
             PngHelperInternal.InitCrcForTests(png1);
             png1.ReadRow(png1.ImgInfo.Rows - 1);
@@ -66,59 +68,70 @@ namespace SamplesTests {
                 fatalError("different crcs", png1);
         }
 
-        public static string  getTmpFile(String suffix) {
-            return tempDir  + "/temp" + suffix + ".png";
+        public static string getTmpFile(String suffix)
+        {
+            return tempDir + "/temp" + suffix + ".png";
         }
 
         /**
-         * Creates a dummy temp png You should call endFileTmp after adding chunks, etc
-         * */
-        public static PngWriter prepareFileTmp(String suffix, ImageInfo imi) {
+        * Creates a dummy temp png You should call endFileTmp after adding chunks, etc
+        * */
+        public static PngWriter prepareFileTmp(String suffix, ImageInfo imi)
+        {
             PngWriter png = FileHelper.CreatePngWriter(getTmpFile(suffix), imi, true);
             return png;
         }
 
-        public static PngWriter prepareFileTmp(String suffix, bool palette) {
+        public static PngWriter prepareFileTmp(String suffix, bool palette)
+        {
             return prepareFileTmp(suffix, new ImageInfo(32, 32, 8, false, false, palette));
         }
 
-        public static ImageLine generateNoiseLine(ImageInfo imi) { // byte format!
+        public static ImageLine generateNoiseLine(ImageInfo imi)
+        { // byte format!
             ImageLine line = new ImageLine(imi, ImageLine.ESampleType.BYTE, true);
             Random r = new Random();
             r.NextBytes(line.ScanlineB);
             return line;
         }
 
-        public static PngWriter prepareFileTmp(String suffix) {
+        public static PngWriter prepareFileTmp(String suffix)
+        {
             return prepareFileTmp(suffix, false);
         }
 
-        public static void endFileTmp(PngWriter png) {
+        public static void endFileTmp(PngWriter png)
+        {
             ImageLine imline = new ImageLine(png.ImgInfo);
             for (int i = 0; i < png.ImgInfo.Rows; i++)
                 png.WriteRow(imline, i);
             png.End();
         }
 
-        public static PngReader getReaderTmp(String suffix) {
+        public static PngReader getReaderTmp(String suffix)
+        {
             PngReader p = FileHelper.CreatePngReader(getTmpFile(suffix));
             return p;
         }
 
-        public static string addSuffixToName(string orig, String suffix) {
-            string dest = System.Text.RegularExpressions.Regex.Replace(orig,@"\.png$", "");
+        public static string addSuffixToName(string orig, String suffix)
+        {
+            string dest = System.Text.RegularExpressions.Regex.Replace(orig, @"\.png$", "");
             return dest + suffix + ".png";
         }
 
 
-        public static string createWaves(String suffix, double scale, ImageInfo imi) {
+        public static string createWaves(String suffix, double scale, ImageInfo imi)
+        {
             string f = getTmpFile(suffix);
             // open image for writing to a output stream
             PngWriter png = FileHelper.CreatePngWriter(f, imi, true);
             png.GetMetadata().SetText("key1", "val1");
             ImageLine iline = new ImageLine(imi, ImageLine.ESampleType.BYTE, true);
-            for (int row = 0; row < png.ImgInfo.Rows; row++) {
-                for (int x = 0; x < imi.Cols; x++) {
+            for (int row = 0; row < png.ImgInfo.Rows; row++)
+            {
+                for (int x = 0; x < imi.Cols; x++)
+                {
                     int r = (int)((Math.Sin((row + x) * 0.073 * scale) + 1) * 128);
                     int g = (int)((Math.Sin((row + x * 0.22) * 0.08 * scale) + 1) * 128);
                     int b = (int)((Math.Sin((row * 0.52 - x * 0.2) * 0.21 * scale) + 1) * 128);
@@ -134,29 +147,41 @@ namespace SamplesTests {
             return f;
         }
 
-        public static void fatalError(String s, PngReader png1, PngWriter png2) {
-            try {
+        public static void fatalError(String s, PngReader png1, PngWriter png2)
+        {
+            try
+            {
                 png1.End();
                 png2.End();
-            } catch (Exception ) {
+            }
+            catch (Exception)
+            {
             }
             throw new PngjException(s);
         }
 
 
 
-        public static void fatalError(String s, PngReader png1, PngReader png2) {
-            try {
+        public static void fatalError(String s, PngReader png1, PngReader png2)
+        {
+            try
+            {
                 png1.End();
                 png2.End();
-            } catch (Exception ) {
+            }
+            catch (Exception)
+            {
             }
             throw new PngjException(s);
         }
-        public static void fatalError(String s, PngReader png1) {
-            try {
+        public static void fatalError(String s, PngReader png1)
+        {
+            try
+            {
                 png1.End();
-            } catch (Exception ) {
+            }
+            catch (Exception)
+            {
             }
             throw new PngjException(s);
         }

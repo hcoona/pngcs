@@ -4,7 +4,7 @@
 // Based on original work:
 //   Copyright 2012    Hernán J. González    hgonzalez@gmail.com
 //   Licensed under the Apache License, Version 2.0
-//   
+//
 //   You should have received a copy of the Apache License 2.0
 //   along with the program.
 //   If not, see <http://www.apache.org/licenses/LICENSE-2.0>
@@ -23,16 +23,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Hjg.Pngcs;
 using Hjg.Pngcs.Chunks;
 
-namespace SamplesTests {
+namespace SamplesTests
+{
 
-    class SampleDecreaseRed {
+    class SampleDecreaseRed
+    {
 
-        public static void DecreaseRed(String origFilename, String destFilename) {
+        public static void DecreaseRed(String origFilename, String destFilename)
+        {
             if (origFilename.Equals(destFilename)) throw new PngjException("input and output file cannot coincide");
             PngReader pngr = FileHelper.CreatePngReader(origFilename);
             PngWriter pngw = FileHelper.CreatePngWriter(destFilename, pngr.ImgInfo, true);
@@ -43,7 +44,8 @@ namespace SamplesTests {
             int channels = pngr.ImgInfo.Channels;
             if (channels < 3)
                 throw new Exception("This method is for RGB/RGBA images");
-            for (int row = 0; row < pngr.ImgInfo.Rows; row++) {
+            for (int row = 0; row < pngr.ImgInfo.Rows; row++)
+            {
                 ImageLine l1 = pngr.ReadRow(row);
                 for (int j = 0; j < pngr.ImgInfo.Cols; j++)
                     l1.Scanline[j * channels] /= 2;

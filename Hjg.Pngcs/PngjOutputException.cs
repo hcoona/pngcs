@@ -4,7 +4,7 @@
 // Based on original work:
 //   Copyright 2012    Hernán J. González    hgonzalez@gmail.com
 //   Licensed under the Apache License, Version 2.0
-//   
+//
 //   You should have received a copy of the Apache License 2.0
 //   along with the program.
 //   If not, see <http://www.apache.org/licenses/LICENSE-2.0>
@@ -22,32 +22,32 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-namespace Hjg.Pngcs {
+namespace Hjg.Pngcs
+{
 
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Runtime.CompilerServices;
 
     /// <summary>
     /// Exception associated with input (reading) operations
     /// </summary>
     [Serializable]
-    public class PngjOutputException : PngjException {
+    public class PngjOutputException : PngjException
+    {
         private const long serialVersionUID = 1L;
 
         public PngjOutputException(String message, Exception cause)
-            : base(message, cause) {
+            : base(message, cause)
+        {
         }
 
         public PngjOutputException(String message)
-            : base(message) {
+            : base(message)
+        {
         }
 
         public PngjOutputException(Exception cause)
-            : base(cause) {
+            : base(cause)
+        {
         }
     }
 }

@@ -4,7 +4,7 @@
 // Based on original work:
 //   Copyright 2012    Hernán J. González    hgonzalez@gmail.com
 //   Licensed under the Apache License, Version 2.0
-//   
+//
 //   You should have received a copy of the Apache License 2.0
 //   along with the program.
 //   If not, see <http://www.apache.org/licenses/LICENSE-2.0>
@@ -22,20 +22,18 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-namespace Hjg.Pngcs.Chunks {
+namespace Hjg.Pngcs.Chunks
+{
 
-    using Hjg.Pngcs;
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
     using System.IO;
-    using System.Runtime.CompilerServices;
+    using Hjg.Pngcs;
     /// <summary>
     /// iTXt chunk:  http://www.w3.org/TR/PNG/#11iTXt
     /// One of the three text chunks
     /// </summary>
-    public class PngChunkITXT : PngChunkTextVar {
+    public class PngChunkITXT : PngChunkTextVar
+    {
         public const String ID = ChunkHelper.iTXt;
 
         private bool compressed = false;
@@ -43,10 +41,12 @@ namespace Hjg.Pngcs.Chunks {
         private String translatedTag = "";
 
         public PngChunkITXT(ImageInfo info)
-            : base(ID, info) {
+            : base(ID, info)
+        {
         }
 
-        public override ChunkRaw CreateRawChunk() {
+        public override ChunkRaw CreateRawChunk()
+        {
             if (key.Length == 0)
                 throw new PngjException("Text chunk key must be non empty");
             MemoryStream ba = new MemoryStream();
@@ -59,7 +59,8 @@ namespace Hjg.Pngcs.Chunks {
             ChunkHelper.WriteBytesToStream(ba, ChunkHelper.ToBytesUTF8(translatedTag));
             ba.WriteByte(0); // separator
             byte[] textbytes = ChunkHelper.ToBytesUTF8(val);
-            if (compressed) {
+            if (compressed)
+            {
                 textbytes = ChunkHelper.compressBytes(textbytes, true);
             }
             ChunkHelper.WriteBytesToStream(ba, textbytes);
@@ -69,10 +70,12 @@ namespace Hjg.Pngcs.Chunks {
             return chunk;
         }
 
-        public override void ParseFromRaw(ChunkRaw c) {
+        public override void ParseFromRaw(ChunkRaw c)
+        {
             int nullsFound = 0;
             int[] nullsIdx = new int[3];
-            for (int k = 0; k < c.Data.Length; k++) {
+            for (int k = 0; k < c.Data.Length; k++)
+            {
                 if (c.Data[k] != 0)
                     continue;
                 nullsIdx[nullsFound] = k;
@@ -93,15 +96,19 @@ namespace Hjg.Pngcs.Chunks {
             langTag = ChunkHelper.ToString(c.Data, i, nullsIdx[1] - i);
             translatedTag = ChunkHelper.ToStringUTF8(c.Data, nullsIdx[1] + 1, nullsIdx[2] - nullsIdx[1] - 1);
             i = nullsIdx[2] + 1;
-            if (compressed) {
+            if (compressed)
+            {
                 byte[] bytes = ChunkHelper.compressBytes(c.Data, i, c.Data.Length - i, false);
                 val = ChunkHelper.ToStringUTF8(bytes);
-            } else {
+            }
+            else
+            {
                 val = ChunkHelper.ToStringUTF8(c.Data, i, c.Data.Length - i);
             }
         }
 
-        public override void CloneDataFromRead(PngChunk other) {
+        public override void CloneDataFromRead(PngChunk other)
+        {
             PngChunkITXT otherx = (PngChunkITXT)other;
             key = otherx.key;
             val = otherx.val;
@@ -110,27 +117,33 @@ namespace Hjg.Pngcs.Chunks {
             translatedTag = otherx.translatedTag;
         }
 
-        public bool IsCompressed() {
+        public bool IsCompressed()
+        {
             return compressed;
         }
 
-        public void SetCompressed(bool compressed) {
+        public void SetCompressed(bool compressed)
+        {
             this.compressed = compressed;
         }
 
-        public String GetLangtag() {
+        public String GetLangtag()
+        {
             return langTag;
         }
 
-        public void SetLangtag(String langtag) {
+        public void SetLangtag(String langtag)
+        {
             this.langTag = langtag;
         }
 
-        public String GetTranslatedTag() {
+        public String GetTranslatedTag()
+        {
             return translatedTag;
         }
 
-        public void SetTranslatedTag(String translatedTag) {
+        public void SetTranslatedTag(String translatedTag)
+        {
             this.translatedTag = translatedTag;
         }
     }

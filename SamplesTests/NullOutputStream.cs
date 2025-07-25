@@ -4,7 +4,7 @@
 // Based on original work:
 //   Copyright 2012    Hernán J. González    hgonzalez@gmail.com
 //   Licensed under the Apache License, Version 2.0
-//   
+//
 //   You should have received a copy of the Apache License 2.0
 //   along with the program.
 //   If not, see <http://www.apache.org/licenses/LICENSE-2.0>
@@ -22,28 +22,30 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SamplesTests {
-    public  class NullOutputStream : System.IO.MemoryStream {
+namespace SamplesTests
+{
+    public class NullOutputStream : System.IO.MemoryStream
+    {
         private int cont = 0;
 
-        public void Write(int arg0) {
+        public void Write(int arg0)
+        {
             // nothing!
             cont++;
         }
 
-        public override void Write(byte[] b, int off, int len) {
+        public override void Write(byte[] b, int off, int len)
+        {
             cont += len;
         }
 
-        public override void WriteByte(byte b) {
+        public override void WriteByte(byte b)
+        {
             cont++;
         }
 
-        public int getCont() {
+        public int getCont()
+        {
             return cont;
         }
     }

@@ -4,7 +4,7 @@
 // Based on original work:
 //   Copyright 2012    Hernán J. González    hgonzalez@gmail.com
 //   Licensed under the Apache License, Version 2.0
-//   
+//
 //   You should have received a copy of the Apache License 2.0
 //   along with the program.
 //   If not, see <http://www.apache.org/licenses/LICENSE-2.0>
@@ -22,22 +22,19 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-namespace Hjg.Pngcs.Chunks {
+namespace Hjg.Pngcs.Chunks
+{
 
-    using Hjg.Pngcs;
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Runtime.CompilerServices;
+    using Hjg.Pngcs;
 
- /// <summary>
+    /// <summary>
     /// tRNS chunk: http://www.w3.org/TR/PNG/#11tRNS
- /// </summary>
-    public class PngChunkTRNS : PngChunkSingle {
+    /// </summary>
+    public class PngChunkTRNS : PngChunkSingle
+    {
         public const String ID = ChunkHelper.tRNS;
-    
+
         // this chunk structure depends on the image type
         // only one of these is meaningful
         private int gray;
@@ -45,22 +42,31 @@ namespace Hjg.Pngcs.Chunks {
         private int[] paletteAlpha;
 
         public PngChunkTRNS(ImageInfo info)
-            : base(ID, info) {
+            : base(ID, info)
+        {
         }
-        public override ChunkOrderingConstraint GetOrderingConstraint() {
+        public override ChunkOrderingConstraint GetOrderingConstraint()
+        {
             return ChunkOrderingConstraint.AFTER_PLTE_BEFORE_IDAT;
         }
-        public override ChunkRaw CreateRawChunk() {
+        public override ChunkRaw CreateRawChunk()
+        {
             ChunkRaw c = null;
-            if (ImgInfo.Greyscale) {
+            if (ImgInfo.Greyscale)
+            {
                 c = createEmptyChunk(2, true);
                 Hjg.Pngcs.PngHelperInternal.WriteInt2tobytes(gray, c.Data, 0);
-            } else if (ImgInfo.Indexed) {
+            }
+            else if (ImgInfo.Indexed)
+            {
                 c = createEmptyChunk(paletteAlpha.Length, true);
-                for (int n = 0; n < c.Len; n++) {
+                for (int n = 0; n < c.Len; n++)
+                {
                     c.Data[n] = (byte)paletteAlpha[n];
                 }
-            } else {
+            }
+            else
+            {
                 c = createEmptyChunk(6, true);
                 Hjg.Pngcs.PngHelperInternal.WriteInt2tobytes(red, c.Data, 0);
                 Hjg.Pngcs.PngHelperInternal.WriteInt2tobytes(green, c.Data, 0);
@@ -69,35 +75,45 @@ namespace Hjg.Pngcs.Chunks {
             return c;
         }
 
-        public override void ParseFromRaw(ChunkRaw c) {
-            if (ImgInfo.Greyscale) {
+        public override void ParseFromRaw(ChunkRaw c)
+        {
+            if (ImgInfo.Greyscale)
+            {
                 gray = Hjg.Pngcs.PngHelperInternal.ReadInt2fromBytes(c.Data, 0);
-            } else if (ImgInfo.Indexed) {
+            }
+            else if (ImgInfo.Indexed)
+            {
                 int nentries = c.Data.Length;
                 paletteAlpha = new int[nentries];
-                for (int n = 0; n < nentries; n++) {
+                for (int n = 0; n < nentries; n++)
+                {
                     paletteAlpha[n] = (int)(c.Data[n] & 0xff);
                 }
-            } else {
+            }
+            else
+            {
                 red = Hjg.Pngcs.PngHelperInternal.ReadInt2fromBytes(c.Data, 0);
                 green = Hjg.Pngcs.PngHelperInternal.ReadInt2fromBytes(c.Data, 2);
                 blue = Hjg.Pngcs.PngHelperInternal.ReadInt2fromBytes(c.Data, 4);
             }
         }
 
-        public override void CloneDataFromRead(PngChunk other) {
+        public override void CloneDataFromRead(PngChunk other)
+        {
             PngChunkTRNS otherx = (PngChunkTRNS)other;
             gray = otherx.gray;
             red = otherx.red;
             green = otherx.green;
             blue = otherx.blue;
-            if (otherx.paletteAlpha != null) {
+            if (otherx.paletteAlpha != null)
+            {
                 paletteAlpha = new int[otherx.paletteAlpha.Length];
                 System.Array.Copy(otherx.paletteAlpha, 0, paletteAlpha, 0, paletteAlpha.Length);
             }
         }
 
-        public void SetRGB(int r, int g, int b) {
+        public void SetRGB(int r, int g, int b)
+        {
             if (ImgInfo.Greyscale || ImgInfo.Indexed)
                 throw new PngjException("only rgb or rgba images support this");
             red = r;
@@ -105,19 +121,22 @@ namespace Hjg.Pngcs.Chunks {
             blue = b;
         }
 
-        public int[] GetRGB() {
+        public int[] GetRGB()
+        {
             if (ImgInfo.Greyscale || ImgInfo.Indexed)
                 throw new PngjException("only rgb or rgba images support this");
             return new int[] { red, green, blue };
         }
 
-        public void SetGray(int g) {
+        public void SetGray(int g)
+        {
             if (!ImgInfo.Greyscale)
                 throw new PngjException("only grayscale images support this");
             gray = g;
         }
 
-        public int GetGray() {
+        public int GetGray()
+        {
             if (!ImgInfo.Greyscale)
                 throw new PngjException("only grayscale images support this");
             return gray;
@@ -127,7 +146,8 @@ namespace Hjg.Pngcs.Chunks {
         /// WARNING: non deep copy
         /// </summary>
         /// <param name="palAlpha"></param>
-        public void SetPalletteAlpha(int[] palAlpha) {
+        public void SetPalletteAlpha(int[] palAlpha)
+        {
             if (!ImgInfo.Indexed)
                 throw new PngjException("only indexed images support this");
             paletteAlpha = palAlpha;
@@ -137,7 +157,8 @@ namespace Hjg.Pngcs.Chunks {
         /// utiliy method : to use when only one pallete index is set as totally transparent
         /// </summary>
         /// <param name="palAlphaIndex"></param>
-        public void setIndexEntryAsTransparent(int palAlphaIndex) {
+        public void setIndexEntryAsTransparent(int palAlphaIndex)
+        {
             if (!ImgInfo.Indexed)
                 throw new PngjException("only indexed images support this");
             paletteAlpha = new int[] { palAlphaIndex + 1 };
@@ -150,7 +171,8 @@ namespace Hjg.Pngcs.Chunks {
         /// WARNING: non deep copy
         /// </summary>
         /// <returns></returns>
-        public int[] GetPalletteAlpha() {
+        public int[] GetPalletteAlpha()
+        {
             if (!ImgInfo.Indexed)
                 throw new PngjException("only indexed images support this");
             return paletteAlpha;

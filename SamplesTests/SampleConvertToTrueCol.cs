@@ -4,7 +4,7 @@
 // Based on original work:
 //   Copyright 2012    Hernán J. González    hgonzalez@gmail.com
 //   Licensed under the Apache License, Version 2.0
-//   
+//
 //   You should have received a copy of the Apache License 2.0
 //   along with the program.
 //   If not, see <http://www.apache.org/licenses/LICENSE-2.0>
@@ -23,17 +23,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Hjg.Pngcs;
 using Hjg.Pngcs.Chunks;
 
-namespace SamplesTests {
+namespace SamplesTests
+{
 
-    class SampleConvertToTrueCol {
+    class SampleConvertToTrueCol
+    {
 
-        public static void doit(String orig) {
-            string copy= TestsHelper.addSuffixToName(orig, "_tc");
+        public static void doit(String orig)
+        {
+            string copy = TestsHelper.addSuffixToName(orig, "_tc");
 
             PngReader pngr = FileHelper.CreatePngReader(orig);
             if (!pngr.ImgInfo.Indexed)
@@ -45,7 +46,8 @@ namespace SamplesTests {
             PngWriter pngw = FileHelper.CreatePngWriter(copy, im2, true);
             pngw.CopyChunksFirst(pngr, ChunkCopyBehaviour.COPY_ALL_SAFE);
             int[] buf = null;
-            for (int row = 0; row < pngr.ImgInfo.Rows; row++) {
+            for (int row = 0; row < pngr.ImgInfo.Rows; row++)
+            {
                 ImageLine line = pngr.ReadRowInt(row);
                 buf = ImageLineHelper.Palette2rgb(line, plte, trns, buf);
                 pngw.WriteRowInt(buf, row);

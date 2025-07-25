@@ -4,7 +4,7 @@
 // Based on original work:
 //   Copyright 2012    Hernán J. González    hgonzalez@gmail.com
 //   Licensed under the Apache License, Version 2.0
-//   
+//
 //   You should have received a copy of the Apache License 2.0
 //   along with the program.
 //   If not, see <http://www.apache.org/licenses/LICENSE-2.0>
@@ -22,55 +22,59 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-namespace Hjg.Pngcs.Chunks {
+namespace Hjg.Pngcs.Chunks
+{
 
-    using Hjg.Pngcs;
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Runtime.CompilerServices;
+    using Hjg.Pngcs;
 
     /// <summary>
     /// gAMA chunk, see http://www.w3.org/TR/PNG/#11gAMA
     /// </summary>
-    public class PngChunkGAMA : PngChunkSingle {
+    public class PngChunkGAMA : PngChunkSingle
+    {
         public const String ID = ChunkHelper.gAMA;
 
         private double gamma;
 
         public PngChunkGAMA(ImageInfo info)
-            : base(ID, info) {
+            : base(ID, info)
+        {
         }
 
-        public override ChunkOrderingConstraint GetOrderingConstraint() {
+        public override ChunkOrderingConstraint GetOrderingConstraint()
+        {
             return ChunkOrderingConstraint.BEFORE_PLTE_AND_IDAT;
         }
 
-        public override ChunkRaw CreateRawChunk() {
+        public override ChunkRaw CreateRawChunk()
+        {
             ChunkRaw c = createEmptyChunk(4, true);
             int g = (int)(gamma * 100000 + 0.5d);
             Hjg.Pngcs.PngHelperInternal.WriteInt4tobytes(g, c.Data, 0);
             return c;
         }
 
-        public override void ParseFromRaw(ChunkRaw chunk) {
+        public override void ParseFromRaw(ChunkRaw chunk)
+        {
             if (chunk.Len != 4)
                 throw new PngjException("bad chunk " + chunk);
             int g = Hjg.Pngcs.PngHelperInternal.ReadInt4fromBytes(chunk.Data, 0);
             gamma = ((double)g) / 100000.0d;
         }
 
-        public override void CloneDataFromRead(PngChunk other) {
+        public override void CloneDataFromRead(PngChunk other)
+        {
             gamma = ((PngChunkGAMA)other).gamma;
         }
 
-        public double GetGamma() {
+        public double GetGamma()
+        {
             return gamma;
         }
 
-        public void SetGamma(double gamma) {
+        public void SetGamma(double gamma)
+        {
             this.gamma = gamma;
         }
     }

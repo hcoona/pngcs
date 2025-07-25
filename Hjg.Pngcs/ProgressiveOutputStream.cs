@@ -4,7 +4,7 @@
 // Based on original work:
 //   Copyright 2012    Hernán J. González    hgonzalez@gmail.com
 //   Licensed under the Apache License, Version 2.0
-//   
+//
 //   You should have received a copy of the Apache License 2.0
 //   along with the program.
 //   If not, see <http://www.apache.org/licenses/LICENSE-2.0>
@@ -22,45 +22,48 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-namespace Hjg.Pngcs {
+namespace Hjg.Pngcs
+{
 
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
     using System.IO;
-    using System.Runtime.CompilerServices;
 
     /// <summary>
     /// stream that outputs to memory and allows to flush fragments every 'size'
     /// bytes to some other destination
     /// </summary>
     ///
-    abstract internal class ProgressiveOutputStream : MemoryStream {
+    abstract internal class ProgressiveOutputStream : MemoryStream
+    {
         private readonly int size;
         private long countFlushed = 0;
 
-        public ProgressiveOutputStream(int size_0) {
+        public ProgressiveOutputStream(int size_0)
+        {
             this.size = size_0;
             if (size < 8) throw new PngjException("bad size for ProgressiveOutputStream: " + size);
         }
 
-        public override void Close() {
+        public override void Close()
+        {
             Flush();
             base.Close();
         }
 
-        public override void Flush() {
+        public override void Flush()
+        {
             base.Flush();
             CheckFlushBuffer(true);
         }
 
-        public override void Write(byte[] b, int off, int len) {
+        public override void Write(byte[] b, int off, int len)
+        {
             base.Write(b, off, len);
             CheckFlushBuffer(false);
         }
 
-        public void Write(byte[] b) {
+        public void Write(byte[] b)
+        {
             Write(b, 0, b.Length);
             CheckFlushBuffer(false);
         }
@@ -71,10 +74,12 @@ namespace Hjg.Pngcs {
         /// flushBuffer() and cleans those bytes from own buffer
         /// </summary>
         ///
-        private void CheckFlushBuffer(bool forced) {
+        private void CheckFlushBuffer(bool forced)
+        {
             int count = (int)Position;
             byte[] buf = GetBuffer();
-            while (forced || count >= size) {
+            while (forced || count >= size)
+            {
                 int nb = size;
                 if (nb > count)
                     nb = count;
@@ -92,7 +97,8 @@ namespace Hjg.Pngcs {
 
         protected abstract void FlushBuffer(byte[] b, int n);
 
-        public long GetCountFlushed() {
+        public long GetCountFlushed()
+        {
             return countFlushed;
         }
     }

@@ -4,7 +4,7 @@
 // Based on original work:
 //   Copyright 2012    Hernán J. González    hgonzalez@gmail.com
 //   Licensed under the Apache License, Version 2.0
-//   
+//
 //   You should have received a copy of the Apache License 2.0
 //   along with the program.
 //   If not, see <http://www.apache.org/licenses/LICENSE-2.0>
@@ -22,57 +22,62 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-namespace Hjg.Pngcs.Chunks {
+namespace Hjg.Pngcs.Chunks
+{
 
-    using Hjg.Pngcs;
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Runtime.CompilerServices;
+    using Hjg.Pngcs;
     /// <summary>
     /// Unknown (for our chunk factory) chunk type.
     /// </summary>
-    public class PngChunkUNKNOWN : PngChunkMultiple { 
+    public class PngChunkUNKNOWN : PngChunkMultiple
+    {
 
         private byte[] data;
 
         public PngChunkUNKNOWN(String id, ImageInfo info)
-            : base(id, info) {
+            : base(id, info)
+        {
         }
 
         private PngChunkUNKNOWN(PngChunkUNKNOWN c, ImageInfo info)
-            : base(c.Id, info) {
+            : base(c.Id, info)
+        {
             System.Array.Copy(c.data, 0, data, 0, c.data.Length);
         }
 
-        public override ChunkOrderingConstraint GetOrderingConstraint() {
+        public override ChunkOrderingConstraint GetOrderingConstraint()
+        {
             return ChunkOrderingConstraint.NONE;
         }
 
 
-        public override ChunkRaw CreateRawChunk() {
+        public override ChunkRaw CreateRawChunk()
+        {
             ChunkRaw p = createEmptyChunk(data.Length, false);
             p.Data = this.data;
             return p;
         }
 
-        public override void ParseFromRaw(ChunkRaw c) {
+        public override void ParseFromRaw(ChunkRaw c)
+        {
             data = c.Data;
         }
 
         /* does not copy! */
-        public byte[] GetData() {
+        public byte[] GetData()
+        {
             return data;
         }
 
         /* does not copy! */
-        public void SetData(byte[] data_0) {
+        public void SetData(byte[] data_0)
+        {
             this.data = data_0;
         }
 
-        public override void CloneDataFromRead(PngChunk other) {
+        public override void CloneDataFromRead(PngChunk other)
+        {
             // THIS SHOULD NOT BE CALLED IF ALREADY CLONED WITH COPY CONSTRUCTOR
             PngChunkUNKNOWN c = (PngChunkUNKNOWN)other;
             data = c.data; // not deep copy

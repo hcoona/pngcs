@@ -4,7 +4,7 @@
 // Based on original work:
 //   Copyright 2012    Hernán J. González    hgonzalez@gmail.com
 //   Licensed under the Apache License, Version 2.0
-//   
+//
 //   You should have received a copy of the Apache License 2.0
 //   along with the program.
 //   If not, see <http://www.apache.org/licenses/LICENSE-2.0>
@@ -22,19 +22,13 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-namespace Hjg.Pngcs.Chunks {
-
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Runtime.CompilerServices;
-
+namespace Hjg.Pngcs.Chunks
+{
     /// <summary>
     /// Defines what to do with non critical chunks when reading
     /// </summary>
-    public enum ChunkLoadBehaviour {
+    public enum ChunkLoadBehaviour
+    {
         /// <summary>
         /// all non-critical chunks are skippped
         /// </summary>
@@ -44,12 +38,12 @@ namespace Hjg.Pngcs.Chunks {
         /// </summary>
         LOAD_CHUNK_KNOWN,
         /// <summary>
-        /// load chunk if 'known' or safe to copy 
+        /// load chunk if 'known' or safe to copy
         /// </summary>
         LOAD_CHUNK_IF_SAFE,
         /// <summary>
-        /// load chunks always 
-        /// 
+        /// load chunks always
+        ///
         ///  Notice that other restrictions might apply, see PngReader.SkipChunkMaxSize PngReader.SkipChunkIds
         /// </summary>
         LOAD_CHUNK_ALWAYS,

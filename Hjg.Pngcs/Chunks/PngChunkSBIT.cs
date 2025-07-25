@@ -4,7 +4,7 @@
 // Based on original work:
 //   Copyright 2012    Hernán J. González    hgonzalez@gmail.com
 //   Licensed under the Apache License, Version 2.0
-//   
+//
 //   You should have received a copy of the Apache License 2.0
 //   along with the program.
 //   If not, see <http://www.apache.org/licenses/LICENSE-2.0>
@@ -22,22 +22,19 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-namespace Hjg.Pngcs.Chunks {
+namespace Hjg.Pngcs.Chunks
+{
 
-    using Hjg.Pngcs;
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Runtime.CompilerServices;
+    using Hjg.Pngcs;
 
     /// <summary>
     /// sBIT chunk: http://www.w3.org/TR/PNG/#11sBIT
-    /// 
+    ///
     /// this chunk structure depends on the image type
     /// </summary>
-    public class PngChunkSBIT : PngChunkSingle {
+    public class PngChunkSBIT : PngChunkSingle
+    {
         public const String ID = ChunkHelper.sBIT;
 
         //	significant bits
@@ -48,23 +45,29 @@ namespace Hjg.Pngcs.Chunks {
         public int Bluesb { get; set; }
 
         public PngChunkSBIT(ImageInfo info)
-            : base(ID, info) {
+            : base(ID, info)
+        {
         }
 
 
-        public override ChunkOrderingConstraint GetOrderingConstraint() {
+        public override ChunkOrderingConstraint GetOrderingConstraint()
+        {
             return ChunkOrderingConstraint.BEFORE_PLTE_AND_IDAT;
         }
 
 
-        public override void ParseFromRaw(ChunkRaw c) {
+        public override void ParseFromRaw(ChunkRaw c)
+        {
             if (c.Len != GetLen())
                 throw new PngjException("bad chunk length " + c);
-            if (ImgInfo.Greyscale) {
+            if (ImgInfo.Greyscale)
+            {
                 Graysb = PngHelperInternal.ReadInt1fromByte(c.Data, 0);
                 if (ImgInfo.Alpha)
                     Alphasb = PngHelperInternal.ReadInt1fromByte(c.Data, 1);
-            } else {
+            }
+            else
+            {
                 Redsb = PngHelperInternal.ReadInt1fromByte(c.Data, 0);
                 Greensb = PngHelperInternal.ReadInt1fromByte(c.Data, 1);
                 Bluesb = PngHelperInternal.ReadInt1fromByte(c.Data, 2);
@@ -73,14 +76,18 @@ namespace Hjg.Pngcs.Chunks {
             }
         }
 
-        public override ChunkRaw CreateRawChunk() {
+        public override ChunkRaw CreateRawChunk()
+        {
             ChunkRaw c = null;
             c = createEmptyChunk(GetLen(), true);
-            if (ImgInfo.Greyscale) {
+            if (ImgInfo.Greyscale)
+            {
                 c.Data[0] = (byte)Graysb;
                 if (ImgInfo.Alpha)
                     c.Data[1] = (byte)Alphasb;
-            } else {
+            }
+            else
+            {
                 c.Data[0] = (byte)Redsb;
                 c.Data[1] = (byte)Greensb;
                 c.Data[2] = (byte)Bluesb;
@@ -91,7 +98,8 @@ namespace Hjg.Pngcs.Chunks {
         }
 
 
-        public override void CloneDataFromRead(PngChunk other) {
+        public override void CloneDataFromRead(PngChunk other)
+        {
             PngChunkSBIT otherx = (PngChunkSBIT)other;
             Graysb = otherx.Graysb;
             Redsb = otherx.Redsb;
@@ -100,7 +108,8 @@ namespace Hjg.Pngcs.Chunks {
             Alphasb = otherx.Alphasb;
         }
 
-        private int GetLen() {
+        private int GetLen()
+        {
             int len = ImgInfo.Greyscale ? 1 : 3;
             if (ImgInfo.Alpha) len += 1;
             return len;

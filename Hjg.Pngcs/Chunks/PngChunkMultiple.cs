@@ -4,7 +4,7 @@
 // Based on original work:
 //   Copyright 2012    Hernán J. González    hgonzalez@gmail.com
 //   Licensed under the Apache License, Version 2.0
-//   
+//
 //   You should have received a copy of the Apache License 2.0
 //   along with the program.
 //   If not, see <http://www.apache.org/licenses/LICENSE-2.0>
@@ -23,20 +23,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Hjg.Pngcs.Chunks {
+namespace Hjg.Pngcs.Chunks
+{
     /// <summary>
     /// A Chunk type that allows duplicate in an image
     /// </summary>
-    public abstract class PngChunkMultiple : PngChunk {
+    public abstract class PngChunkMultiple : PngChunk
+    {
         internal PngChunkMultiple(String id, ImageInfo imgInfo)
-            : base(id, imgInfo) {
+            : base(id, imgInfo)
+        {
 
         }
 
-        public sealed override bool AllowsMultiple() {
+        public sealed override bool AllowsMultiple()
+        {
             return true;
         }
 

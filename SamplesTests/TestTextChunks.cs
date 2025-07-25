@@ -4,7 +4,7 @@
 // Based on original work:
 //   Copyright 2012    Hernán J. González    hgonzalez@gmail.com
 //   Licensed under the Apache License, Version 2.0
-//   
+//
 //   You should have received a copy of the Apache License 2.0
 //   along with the program.
 //   If not, see <http://www.apache.org/licenses/LICENSE-2.0>
@@ -24,18 +24,20 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Hjg.Pngcs;
 using Hjg.Pngcs.Chunks;
 
-namespace SamplesTests {
+namespace SamplesTests
+{
 
-    class TestTextChunks {
+    class TestTextChunks
+    {
         /// <summary>
         /// Writes a new file with several text chunks, reads it back and compares
         /// </summary>
 
-        public static void test() {
+        public static void test()
+        {
             Dictionary<string, string> texts = new Dictionary<String, String>();
             texts.Add("key1", "val");
             texts.Add("empty1", "");
@@ -69,7 +71,8 @@ namespace SamplesTests {
             PngReader pngr = TestsHelper.getReaderTmp(suffix);
             pngr.ReadSkippingAllRows();
             int ok = 0;
-            foreach (PngChunk c in pngr.GetChunksList().GetChunks()) {
+            foreach (PngChunk c in pngr.GetChunksList().GetChunks())
+            {
                 if (!ChunkHelper.IsText(c))
                     continue;
                 ok++;
@@ -77,7 +80,8 @@ namespace SamplesTests {
                 String key = ct.GetKey();
                 String val = ct.GetVal();
                 Console.WriteLine(c.Id + " chunk. Key:" + key + " val='" + val + "'");
-                if (!val.Equals(texts[key])) {
+                if (!val.Equals(texts[key]))
+                {
                     Console.WriteLine("ERROR: expected '" + texts[key] + "' got '" + val
                             + "' key=" + key + " id=" + c.Id);
                 }
