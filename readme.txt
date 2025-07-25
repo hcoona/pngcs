@@ -53,3 +53,13 @@ See changes.txt
 Hernan J Gonzalez - hgonzalez@gmail.com -  http://stackoverflow.com/users/277304/leonbloy
 
 ---------------------------------------------------------------------------------
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 or later (GPL v3+).  
+See `LICENSE.GPL.txt` for details.
+
+Portions of the code are derived from an open source project originally licensed under the Apache License, Version 2.0 by Hernán J. González.  
+The original copyright and license notice are preserved in accordance with the Apache License.
+
+For more information, see the files `LICENSE.GPL.txt` (GPL v3+) and `LICENSE.APACHE.txt` (Apache 2.0) in this repository.
