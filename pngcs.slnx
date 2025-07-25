@@ -1,0 +1,16 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="Debug45" />
+    <BuildType Name="Release" />
+    <BuildType Name="Release45" />
+  </Configurations>
+  <Project Path="Hjg.Pngcs/Hjg.Pngcs.csproj" Id="fd3b0d50-46b3-4a83-9a6d-c641569142cf">
+    <BuildType Solution="Debug45|*" Project="Debug" />
+    <BuildType Solution="Release45|*" Project="Release" />
+  </Project>
+  <Project Path="SamplesTests/SamplesTests.csproj" Id="bdde63d8-6ff6-4cde-89c8-dac83d40bb25">
+    <BuildType Solution="Debug45|*" Project="Debug" />
+    <BuildType Solution="Release45|*" Project="Release" />
+  </Project>
+</Solution>
