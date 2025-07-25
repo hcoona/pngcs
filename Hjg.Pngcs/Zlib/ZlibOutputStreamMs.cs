@@ -30,7 +30,6 @@ using System.IO.Compression;
 // ONLY FOR .NET 4.5
 namespace Hjg.Pngcs.Zlib {
 
-#if NET45
 
    internal class ZlibOutputStreamMs : AZlibOutputStream {
 
@@ -116,5 +115,4 @@ namespace Hjg.Pngcs.Zlib {
         }
 
     }
-#endif
 }

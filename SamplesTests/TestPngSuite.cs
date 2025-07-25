@@ -196,7 +196,7 @@ namespace SamplesTests {
                     } else { // real error
                         System.Console.Error.WriteLine("error with " + name + " " + e.Message);
                         conterr++;
-                        throw e;
+                        throw;
 
                     }
                 }
