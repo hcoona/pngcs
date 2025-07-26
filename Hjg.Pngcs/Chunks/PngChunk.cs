@@ -75,6 +75,10 @@ namespace Hjg.Pngcs.Chunks
         /// <summary>
         /// Restrictions for chunk ordering, for ancillary chunks
         /// </summary>
+        [SuppressMessage(
+            "Naming",
+            "CA1707:Identifiers should not contain underscores",
+            Justification = "Keep Public API compatibility")]
         public enum ChunkOrderingConstraint
         {
             /// <summary>

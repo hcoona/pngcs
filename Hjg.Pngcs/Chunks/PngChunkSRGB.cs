@@ -33,10 +33,14 @@ namespace Hjg.Pngcs.Chunks
     {
         public const string ID = ChunkHelper.sRGB;
 
+        // CA1707: Identifiers should not contain underscores
+        // Justification: Keep Public API compatibility
+#pragma warning disable CA1707
         public const int RENDER_INTENT_Perceptual = 0;
         public const int RENDER_INTENT_Relative_colorimetric = 1;
         public const int RENDER_INTENT_Saturation = 2;
         public const int RENDER_INTENT_Absolute_colorimetric = 3;
+#pragma warning restore CA1707
 
         public int Intent { get; set; }
 

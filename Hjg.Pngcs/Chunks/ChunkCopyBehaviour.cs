@@ -22,6 +22,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Hjg.Pngcs.Chunks
 {
     /// <summary>
@@ -30,6 +32,10 @@ namespace Hjg.Pngcs.Chunks
     /// <remarks>
     /// They are bitmasks, can be OR-ed
     /// </remarks>
+    [SuppressMessage(
+        "Naming",
+        "CA1707:Identifiers should not contain underscores",
+        Justification = "Keep Public API compatibility")]
     public class ChunkCopyBehaviour
     {
 

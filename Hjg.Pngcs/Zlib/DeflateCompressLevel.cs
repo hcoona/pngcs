@@ -22,11 +22,17 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Hjg.Pngcs.Zlib
 {
     // DEFLATE compression levels 0-9
     public class DeflateCompressLevel
     {
+        [SuppressMessage(
+            "Naming",
+            "CA1707:Identifiers should not contain underscores",
+            Justification = "Keep Public API compatibility")]
         public const int NO_COMPRESSION = 0;
         public const int FASTEST = 3;
         public const int DEFAULT = 6;

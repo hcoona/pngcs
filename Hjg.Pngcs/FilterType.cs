@@ -22,11 +22,17 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Hjg.Pngcs
 {
     /// <summary>
     /// Internal PNG predictor filter, or a strategy to select it.
     /// </summary>
+    [SuppressMessage(
+        "Naming",
+        "CA1707:Identifiers should not contain underscores",
+        Justification = "Keep Public API compatibility")]
     public enum FilterType
     {
         /// <summary>

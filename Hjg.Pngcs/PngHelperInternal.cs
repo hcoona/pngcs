@@ -26,6 +26,7 @@ namespace Hjg.Pngcs
 {
 
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Text;
     using Hjg.Pngcs.Zlib;
@@ -49,6 +50,10 @@ namespace Hjg.Pngcs
             return crc32Engine;
         }
 
+        [SuppressMessage(
+            "Naming",
+            "CA1707:Identifiers should not contain underscores",
+            Justification = "Keep Public API compatibility")]
         public static readonly byte[] PNG_ID_SIGNATURE = { 256 - 119, 80, 78, 71, 13, 10, 26, 10 }; // png magic
 
         public static Encoding charsetLatin1 = Encoding.GetEncoding("ISO-8859-1"); // charset

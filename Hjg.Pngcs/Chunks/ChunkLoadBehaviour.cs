@@ -22,11 +22,17 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Hjg.Pngcs.Chunks
 {
     /// <summary>
     /// Defines what to do with non critical chunks when reading
     /// </summary>
+    [SuppressMessage(
+        "Naming",
+        "CA1707:Identifiers should not contain underscores",
+        Justification = "Keep Public API compatibility")]
     public enum ChunkLoadBehaviour
     {
         /// <summary>

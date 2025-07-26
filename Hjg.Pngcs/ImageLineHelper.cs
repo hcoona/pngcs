@@ -26,6 +26,7 @@ namespace Hjg.Pngcs
 {
 
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using Hjg.Pngcs.Chunks;
 
     /// <summary>
@@ -192,6 +193,10 @@ namespace Hjg.Pngcs
         }
 
 
+        [SuppressMessage(
+            "Naming",
+            "CA1707:Identifiers should not contain underscores",
+            Justification = "Keep Public API compatibility")]
         public static int ClampTo_0_255(int i)
         {
             return i > 255 ? 255 : (i < 0 ? 0 : i);
@@ -205,11 +210,19 @@ namespace Hjg.Pngcs
             return i < 0 ? 0 : (i >= 1 ? 0.999999 : i);
         }
 
+        [SuppressMessage(
+            "Naming",
+            "CA1707:Identifiers should not contain underscores",
+            Justification = "Keep Public API compatibility")]
         public static int ClampTo_0_65535(int i)
         {
             return i > 65535 ? 65535 : (i < 0 ? 0 : i);
         }
 
+        [SuppressMessage(
+            "Naming",
+            "CA1707:Identifiers should not contain underscores",
+            Justification = "Keep Public API compatibility")]
         public static int ClampTo_128_127(int x)
         {
             return x > 127 ? 127 : (x < -128 ? -128 : x);

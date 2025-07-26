@@ -38,6 +38,9 @@ namespace Hjg.Pngcs.Chunks
         {
         }
 
+        // CA1707: Identifiers should not contain underscores
+        // Justification: Keep Public API compatibility
+#pragma warning disable CA1707
         public const string KEY_Title = "Title"; // Short (one line) title or caption for image
         public const string KEY_Author = "Author"; // Name of image's creator
         public const string KEY_Description = "Description"; // Description of image (possibly long)
@@ -48,6 +51,7 @@ namespace Hjg.Pngcs.Chunks
         public const string KEY_Warning = "Warning"; // Warning of nature of content
         public const string KEY_Source = "Source"; // Device used to create the image
         public const string KEY_Comment = "Comment"; // Miscellaneous comment
+#pragma warning restore CA1707
 
         public class PngTxtInfo
         {
