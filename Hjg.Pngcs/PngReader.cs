@@ -527,7 +527,7 @@ namespace Hjg.Pngcs
         /// This happens rarely - most errors are fatal.
         /// </remarks>
         /// <param name="warn"></param>
-        internal void logWarn(string warn)
+        internal static void logWarn(string warn)
         {
             Console.Error.WriteLine(warn);
         }
