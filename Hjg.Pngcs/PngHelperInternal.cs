@@ -172,7 +172,7 @@ namespace Hjg.Pngcs
                 {
                     int n = mask0.Read(b, offset + read, len - read);
                     if (n < 1)
-                        throw new Exception("error reading, " + n + " !=" + len);
+                        throw new PngjInputException("error reading, " + n + " !=" + len);
                     read += n;
                 }
             }

@@ -26,6 +26,7 @@ namespace Hjg.Pngcs.Chunks
 {
 
     using System;
+    using System.IO;
     using Hjg.Pngcs;
 
     /// <summary>
@@ -66,7 +67,7 @@ namespace Hjg.Pngcs.Chunks
             profileName = PngHelperInternal.charsetLatin1.GetString(chunk.Data, 0, pos0);
             int comp = (chunk.Data[pos0 + 1] & 0xff);
             if (comp != 0)
-                throw new Exception("bad compression for ChunkTypeICCP");
+                throw new PngjInputException("bad compression for ChunkTypeICCP");
             int compdatasize = chunk.Data.Length - (pos0 + 2);
             compressedProfile = new byte[compdatasize];
             Array.Copy((Array)(chunk.Data), pos0 + 2, (Array)(compressedProfile), 0, compdatasize);

@@ -166,7 +166,7 @@ namespace Hjg.Pngcs
         {
             if (ended)
                 return -1; // can happen only when raw reading, see Pngreader.readAndSkipsAllRows()
-            if (toReadThisChunk == 0) throw new Exception("this should not happen");
+            if (toReadThisChunk == 0) throw new PngjInputException("this should not happen");
             int n = inputStream.Read(b, off, (len_0 >= toReadThisChunk) ? toReadThisChunk : len_0);
             if (n == -1) n = -2;
             if (n > 0)

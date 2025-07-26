@@ -220,7 +220,7 @@ namespace Hjg.Pngcs
             int clen = PngHelperInternal.ReadInt4(inputStream);
             offset += 4;
             if (clen != 13)
-                throw new Exception("IDHR chunk len != 13 ?? " + clen);
+                throw new PngjInputException("IDHR chunk len != 13 ?? " + clen);
             byte[] chunkid = new byte[4];
             PngHelperInternal.ReadBytes(inputStream, chunkid, 0, 4);
             if (!PngCsUtils.arraysEqual4(chunkid, ChunkHelper.b_IHDR))

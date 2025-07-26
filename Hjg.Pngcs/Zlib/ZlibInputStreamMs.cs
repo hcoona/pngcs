@@ -99,7 +99,7 @@ namespace Hjg.Pngcs.Zlib
             int cmf = rawStream.ReadByte();
             int flag = rawStream.ReadByte();
             if (cmf == -1 || flag == -1) return;
-            if ((cmf & 0x0f) != 8) throw new Exception("Bad compression method for ZLIB header: cmf=" + cmf);
+            if ((cmf & 0x0f) != 8) throw new PngjInputException("Bad compression method for ZLIB header: cmf=" + cmf);
             cmdinfo = ((cmf & (0xf0)) >> 8);// not used?
             fdict = (flag & 32) != 0;
             if (fdict)
