@@ -15,7 +15,7 @@
 // (at your option) any later version.
 //
 // This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY, without even the implied warranty of
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
@@ -30,22 +30,28 @@ namespace Hjg.Pngcs.Zlib
 {
 
     /// <summary>
-    /// Zip input (deflater) based on Ms DeflateStream (.net 4.5)
+    /// Zlib input (decompressor) based on System.IO.Compression.ZLibStream (.NET 6+) or DeflateStream (older frameworks)
     /// </summary>
     public sealed class AZlibInputStream : Stream
     {
         private readonly Stream rawStream;
         private readonly bool leaveOpen;
 
+#if NET6_0_OR_GREATER
+        private ZLibStream zlibStream; // lazily created, if real read is called
+#else
         private DeflateStream deflateStream; // lazily created, if real read is called
+#endif
         private bool initdone = false;
         private bool closed = false;
 
-        // private Adler32 adler32 ; // we dont check adler32!
+#if !NET6_0_OR_GREATER
+        // Legacy implementation fields for .NET Standard 2.0/2.1
         private bool fdict;// merely informational, not used
         private int cmdinfo;// merely informational, not used
         private byte[] dictid; // merely informational, not used
         private byte[] crcread = null; // merely informational, not checked
+#endif
 
         public AZlibInputStream(Stream st, bool leaveOpen)
         {
@@ -55,6 +61,11 @@ namespace Hjg.Pngcs.Zlib
 
         public override int Read(byte[] array, int offset, int count)
         {
+#if NET6_0_OR_GREATER
+            if (!initdone) doInit();
+            if (zlibStream == null && count > 0) initStream();
+            return zlibStream.Read(array, offset, count);
+#else
             if (!initdone) doInit();
             if (deflateStream == null && count > 0) initStream();
             // we dont't check CRC on reading
@@ -65,10 +76,21 @@ namespace Hjg.Pngcs.Zlib
                 for (int i = 0; i < 4; i++) crcread[i] = (byte)rawStream.ReadByte(); // we dont really check/use this
             }
             return r;
+#endif
         }
 
         public override void Close()
         {
+#if NET6_0_OR_GREATER
+            if (closed) return;
+            closed = true;
+            if (zlibStream != null)
+            {
+                zlibStream.Close();
+            }
+            if (!leaveOpen)
+                rawStream.Close();
+#else
             if (!initdone) doInit(); // can happen if never called write
             if (closed) return;
             closed = true;
@@ -83,18 +105,25 @@ namespace Hjg.Pngcs.Zlib
             }
             if (!leaveOpen)
                 rawStream.Close();
+#endif
         }
 
         private void initStream()
         {
+#if NET6_0_OR_GREATER
+            if (zlibStream != null) return;
+            zlibStream = new ZLibStream(rawStream, CompressionMode.Decompress, leaveOpen);
+#else
             if (deflateStream != null) return;
             deflateStream = new DeflateStream(rawStream, CompressionMode.Decompress, true);
+#endif
         }
 
         private void doInit()
         {
             if (initdone) return;
             initdone = true;
+#if !NET6_0_OR_GREATER
             // read zlib header : http://www.ietf.org/rfc/rfc1950.txt
             int cmf = rawStream.ReadByte();
             int flag = rawStream.ReadByte();
@@ -110,11 +139,16 @@ namespace Hjg.Pngcs.Zlib
                     dictid[i] = (byte)rawStream.ReadByte(); // we eat but don't use this
                 }
             }
+#endif
         }
 
         public override void Flush()
         {
+#if NET6_0_OR_GREATER
+            if (zlibStream != null) zlibStream.Flush();
+#else
             if (deflateStream != null) deflateStream.Flush();
+#endif
         }
 
         public override bool CanRead
@@ -178,7 +212,11 @@ namespace Hjg.Pngcs.Zlib
         /// <returns></returns>
         public string getImplementationId()
         {
+#if NET6_0_OR_GREATER
+            return "Zlib inflater: .NET ZLibStream";
+#else
             return "Zlib inflater: .Net CLR 4.5";
+#endif
         }
     }
 }
