@@ -32,6 +32,7 @@
     <PackageId>IO.Github.Hcoona.Pngcs</PackageId>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>PNG;image;graphics;serialization;format</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
