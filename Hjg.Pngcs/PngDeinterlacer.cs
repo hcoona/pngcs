@@ -24,7 +24,7 @@
 
 namespace Hjg.Pngcs
 {
-    class PngDeinterlacer
+    sealed class PngDeinterlacer
     {
         private readonly ImageInfo imi;
         private int pass; // 1-7

@@ -33,7 +33,7 @@ namespace Hjg.Pngcs.Zlib
     /// <summary>
     /// Zip input (deflater) based on Ms DeflateStream (.net 4.5)
     /// </summary>
-    internal class ZlibInputStreamMs : AZlibInputStream
+    internal sealed class ZlibInputStreamMs : AZlibInputStream
     {
 
         public ZlibInputStreamMs(Stream st, bool leaveOpen)

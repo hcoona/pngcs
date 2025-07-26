@@ -29,7 +29,7 @@ namespace Hjg.Pngcs
     /// <summary>
     /// Manages the writer strategy for selecting the internal png predictor filter
     /// </summary>
-    internal class FilterWriteStrategy
+    internal sealed class FilterWriteStrategy
     {
         private static readonly int COMPUTE_STATS_EVERY_N_LINES = 8;
 

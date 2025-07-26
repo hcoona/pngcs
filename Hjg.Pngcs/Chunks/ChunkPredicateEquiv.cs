@@ -28,7 +28,7 @@ namespace Hjg.Pngcs.Chunks
     /// An ad-hoc criterion, perhaps useful, for equivalence.
     /// <see cref="ChunkHelper.Equivalent(PngChunk,PngChunk)"/>
     /// </summary>
-    internal class ChunkPredicateEquiv : ChunkPredicate
+    internal sealed class ChunkPredicateEquiv : ChunkPredicate
     {
 
         private readonly PngChunk chunk;

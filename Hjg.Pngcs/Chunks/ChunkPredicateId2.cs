@@ -33,7 +33,7 @@ namespace Hjg.Pngcs.Chunks
     /// This is the same as ChunkPredicateEquivalent, the only difference is that does not requires
     /// a chunk at construction time
     /// </remarks>
-    internal class ChunkPredicateId2 : ChunkPredicate
+    internal sealed class ChunkPredicateId2 : ChunkPredicate
     {
 
         private readonly string id;

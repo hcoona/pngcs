@@ -32,7 +32,7 @@ namespace Hjg.Pngcs
     /// outputs the stream for IDAT chunk , fragmented at fixed size (32k default).
     /// </summary>
     ///
-    internal class PngIDatChunkOutputStream : ProgressiveOutputStream
+    internal sealed class PngIDatChunkOutputStream : ProgressiveOutputStream
     {
         private const int SIZE_DEFAULT = 32768;// 32k
         private readonly Stream outputStream;

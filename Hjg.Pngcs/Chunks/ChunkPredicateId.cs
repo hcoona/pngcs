@@ -29,7 +29,7 @@ namespace Hjg.Pngcs.Chunks
     /// <summary>
     /// Match if have same Chunk Id
     /// </summary>
-    internal class ChunkPredicateId : ChunkPredicate
+    internal sealed class ChunkPredicateId : ChunkPredicate
     {
         private readonly string id;
         public ChunkPredicateId(string id)

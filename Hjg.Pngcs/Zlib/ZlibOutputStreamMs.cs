@@ -29,7 +29,7 @@ namespace Hjg.Pngcs.Zlib
 {
 
 
-    internal class ZlibOutputStreamMs : AZlibOutputStream
+    internal sealed class ZlibOutputStreamMs : AZlibOutputStream
     {
 
         public ZlibOutputStreamMs(Stream st, int compressLevel, EDeflateCompressStrategy strat, bool leaveOpen) : base(st, compressLevel, strat, leaveOpen)

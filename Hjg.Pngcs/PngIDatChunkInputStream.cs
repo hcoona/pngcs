@@ -33,7 +33,7 @@ namespace Hjg.Pngcs
     /// <summary>
     /// Reads IDAT chunks
     /// </summary>
-    internal class PngIDatChunkInputStream : Stream
+    internal sealed class PngIDatChunkInputStream : Stream
     {
         private readonly Stream inputStream;
         private readonly Hjg.Pngcs.Zlib.CRC32 crcEngine;
@@ -45,7 +45,7 @@ namespace Hjg.Pngcs
         private long offset; // offset inside inputstream
 
         // just informational
-        public class IdatChunkInfo
+        public sealed class IdatChunkInfo
         {
             public readonly int len;
             public readonly long offset;
