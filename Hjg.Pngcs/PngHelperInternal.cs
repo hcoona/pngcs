@@ -56,9 +56,13 @@ namespace Hjg.Pngcs
             Justification = "Keep Public API compatibility")]
         public static readonly byte[] PNG_ID_SIGNATURE = { 256 - 119, 80, 78, 71, 13, 10, 26, 10 }; // png magic
 
-        public static Encoding charsetLatin1 = Encoding.GetEncoding("ISO-8859-1"); // charset
-        public static Encoding charsetUtf8 = Encoding.GetEncoding("UTF-8"); // charset used for some chunks
+        public static readonly Encoding charsetLatin1 = Encoding.GetEncoding("ISO-8859-1"); // charset
+        public static readonly Encoding charsetUtf8 = Encoding.GetEncoding("UTF-8"); // charset used for some chunks
 
+        [SuppressMessage(
+            "Usage",
+            "CA2211:Non-constant fields should not be visible",
+            Justification = "Keep Public API compatibility")]
         public static bool DEBUG = false;
 
         public static int DoubleToInt100000(double d)
