@@ -8,8 +8,24 @@ PngCs is a C# library to read/write PNG images.
 
 It provides a simple API for progressive (sequential line-oriented) reading and writing. It's specially suitable for huge images, which one does not want to load fully in memory.
 
+## Installation
+
+Install the NuGet package:
+
+```powershell
+dotnet add package IO.Github.Hcoona.Pngcs
+```
+
+Or via Package Manager Console:
+
+```powershell
+Install-Package IO.Github.Hcoona.Pngcs
+```
+
 ## Features
 
+- **Modern .NET support**: Multi-targeting for `netstandard2.0`, `netstandard2.1`, `net8.0`, and `net9.0`
+- **Native AOT compatibility**: Full support for Native Ahead-of-Time compilation
 - Supports all PNG spec color models and bitdepths:
   - RGB8/RGB16/RGBA8/RGBA16
   - G8/4/2/1
@@ -17,6 +33,7 @@ It provides a simple API for progressive (sequential line-oriented) reading and 
   - PAL8/4/2/1
 - All filters/compression settings
 - Support for Chunks (metadata)
+- **API Compatibility**: API aligned with `Hjg.Pngcs` v1.1.4. See `CompatibilitySuppressions.xml` for details.
 - **Note**: Does not support interlaced images
 
 ## Origin
@@ -25,7 +42,7 @@ This is a port of the [PngJ library (Java)](http://code.google.com/p/pngj/). The
 
 ## History
 
-See `changes.txt`
+See `ChangeLog.md`
 
 ## Authors
 
