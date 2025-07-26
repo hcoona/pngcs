@@ -42,7 +42,7 @@ namespace Hjg.Pngcs.Zlib
 
         public static AZlibOutputStream createZlibOutputStream(Stream st, int compressLevel, EDeflateCompressStrategy strat, bool leaveOpen)
         {
-            return new ZlibOutputStreamMs(st, compressLevel, strat, leaveOpen);
+            return new AZlibOutputStream(st, compressLevel, strat, leaveOpen);
         }
 
         public static AZlibOutputStream createZlibOutputStream(Stream st)
