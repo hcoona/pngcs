@@ -12,6 +12,9 @@ Change logs for <https://github.com/hcoona/pngcs>.
 - **Modern .NET support**: Multi-targeting for `netstandard2.0`, `netstandard2.1`, `net8.0`, and `net9.0`
 - **Native AOT compatibility**: Full support for Native Ahead-of-Time compilation
 - **NuGet package availability**: Official NuGet package with assembly name `Hjg.Pngcs`
+- **Enhanced compression support**: Improved ZLib stream implementation
+  - Native `ZLibStream` support for .NET 6.0+ targets
+  - Unified compression stream architecture
 - **Performance improvements**:
   - Enhanced string operations with ordinal comparison
   - Optimized dictionary lookups with `TryGetValue()` patterns
@@ -22,6 +25,7 @@ Change logs for <https://github.com/hcoona/pngcs>.
   - Fixed ThreadStatic field initialization problems
 - **Breaking changes**:
   - Assembly renamed from `pngcs` to `Hjg.Pngcs`
+  - Consolidated ZLib stream implementations (removed separate `ZlibInputStreamMs` and `ZlibOutputStreamMs` classes)
   - Updated to GPL-3.0+ licensing
 
 ## Version History on Google Code
