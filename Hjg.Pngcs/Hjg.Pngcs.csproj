@@ -7,11 +7,15 @@
 
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <PackageValidationBaselineName>Hjg.Pngcs</PackageValidationBaselineName>
+    <PackageValidationBaselineVersion>1.1.4</PackageValidationBaselineVersion>
+
     <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Label="AssemblyInfo">
-    <AssemblyName>Pngcs</AssemblyName>
+    <AssemblyName>Hjg.Pngcs</AssemblyName>
     <AssemblyTitle>Hjg.Pngcs</AssemblyTitle>
     <Description>PNGCS: A library for read-write PNG images</Description>
     <Company>http://hjg.com.ar/</Company>

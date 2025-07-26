@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- https://learn.microsoft.com/dotnet/fundamentals/package-validation/diagnostic-ids -->
+<Suppressions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Suppression>
+    <DiagnosticId>CP0008</DiagnosticId>
+    <Target>T:Hjg.Pngcs.Chunks.ChunkLoadBehaviour</Target>
+    <Left>lib/net6.0/Hjg.Pngcs.dll</Left>
+    <Right>lib/netstandard2.1/Hjg.Pngcs.dll</Right>
+    <IsBaselineSuppression>true</IsBaselineSuppression>
+  </Suppression>
+  <Suppression>
+    <DiagnosticId>CP0008</DiagnosticId>
+    <Target>T:Hjg.Pngcs.Chunks.PngChunk.ChunkOrderingConstraint</Target>
+    <Left>lib/net6.0/Hjg.Pngcs.dll</Left>
+    <Right>lib/netstandard2.1/Hjg.Pngcs.dll</Right>
+    <IsBaselineSuppression>true</IsBaselineSuppression>
+  </Suppression>
+  <Suppression>
+    <DiagnosticId>CP0008</DiagnosticId>
+    <Target>T:Hjg.Pngcs.FilterType</Target>
+    <Left>lib/net6.0/Hjg.Pngcs.dll</Left>
+    <Right>lib/netstandard2.1/Hjg.Pngcs.dll</Right>
+    <IsBaselineSuppression>true</IsBaselineSuppression>
+  </Suppression>
+  <Suppression>
+    <DiagnosticId>CP0008</DiagnosticId>
+    <Target>T:Hjg.Pngcs.ImageLine.ESampleType</Target>
+    <Left>lib/net6.0/Hjg.Pngcs.dll</Left>
+    <Right>lib/netstandard2.1/Hjg.Pngcs.dll</Right>
+    <IsBaselineSuppression>true</IsBaselineSuppression>
+  </Suppression>
+  <Suppression>
+    <DiagnosticId>CP0008</DiagnosticId>
+    <Target>T:Hjg.Pngcs.Zlib.EDeflateCompressStrategy</Target>
+    <Left>lib/net6.0/Hjg.Pngcs.dll</Left>
+    <Right>lib/netstandard2.1/Hjg.Pngcs.dll</Right>
+    <IsBaselineSuppression>true</IsBaselineSuppression>
+  </Suppression>
+</Suppressions>
