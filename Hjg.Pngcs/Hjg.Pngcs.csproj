@@ -37,7 +37,8 @@
 
   <ItemGroup>
     <None Include="../README.md" Pack="true" PackagePath="\" />
-    <None Include="../ChangeLog.md" />
+    <None Include="../ChangeLog.md" Pack="true" PackagePath="\" />
+    <None Include="CompatibilitySuppressions.xml" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <Target Name="SetPackageReleaseNotes" BeforeTargets="GenerateNuspec">
