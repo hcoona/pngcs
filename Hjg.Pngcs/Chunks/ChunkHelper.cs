@@ -315,7 +315,7 @@ namespace Hjg.Pngcs.Chunks
         {
             if (c1 == c2)
                 return true;
-            if (c1 == null || c2 == null || !c1.Id.Equals(c2.Id))
+            if (c1 == null || c2 == null || !c1.Id.Equals(c2.Id, StringComparison.Ordinal))
                 return false;
             // same id
             if (c1.GetType() != c2.GetType())
@@ -324,11 +324,11 @@ namespace Hjg.Pngcs.Chunks
                 return true;
             if (c1 is PngChunkTextVar)
             {
-                return ((PngChunkTextVar)c1).GetKey().Equals(((PngChunkTextVar)c2).GetKey());
+                return ((PngChunkTextVar)c1).GetKey().Equals(((PngChunkTextVar)c2).GetKey(), StringComparison.Ordinal);
             }
             if (c1 is PngChunkSPLT)
             {
-                return ((PngChunkSPLT)c1).PalName.Equals(((PngChunkSPLT)c2).PalName);
+                return ((PngChunkSPLT)c1).PalName.Equals(((PngChunkSPLT)c2).PalName, StringComparison.Ordinal);
             }
             // unknown chunks that allow multiple? consider they don't match
             return false;

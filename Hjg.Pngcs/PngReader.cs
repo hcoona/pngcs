@@ -408,10 +408,10 @@ namespace Hjg.Pngcs
                     throw new PngjInputException("END chunk found before image data (IDAT) at offset=" + offset);
                 }
                 string chunkids = ChunkHelper.ToString(chunkid);
-                if (chunkids.Equals(ChunkHelper.PLTE))
+                if (chunkids.Equals(ChunkHelper.PLTE, StringComparison.Ordinal))
                     this.CurrentChunkGroup = ChunksList.CHUNK_GROUP_2_PLTE;
                 ReadChunk(chunkid, clen, false);
-                if (chunkids.Equals(ChunkHelper.PLTE))
+                if (chunkids.Equals(ChunkHelper.PLTE, StringComparison.Ordinal))
                     this.CurrentChunkGroup = ChunksList.CHUNK_GROUP_3_AFTERPLTE;
             }
             int idatLen = found ? clen : -1;

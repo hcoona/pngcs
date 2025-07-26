@@ -22,6 +22,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+using System;
+
 namespace Hjg.Pngcs.Chunks
 {
     /// <summary>
@@ -49,7 +51,7 @@ namespace Hjg.Pngcs.Chunks
 
         public override bool Equals(object obj)
         {
-            return (obj is PngChunkSingle && Id != null && Id.Equals(((PngChunkSingle)obj).Id));
+            return (obj is PngChunkSingle && Id != null && Id.Equals(((PngChunkSingle)obj).Id, StringComparison.Ordinal));
         }
 
     }

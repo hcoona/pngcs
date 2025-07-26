@@ -24,6 +24,7 @@
 
 namespace Hjg.Pngcs
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
@@ -493,7 +494,7 @@ namespace Hjg.Pngcs
                 bool copy = false;
                 if (chunk.Crit)
                 {
-                    if (chunk.Id.Equals(ChunkHelper.PLTE))
+                    if (chunk.Id.Equals(ChunkHelper.PLTE, StringComparison.Ordinal))
                     {
                         if (ImgInfo.Indexed && ChunkHelper.maskMatch(copy_mask, ChunkCopyBehaviour.COPY_PALETTE))
                             copy = true;
@@ -510,16 +511,18 @@ namespace Hjg.Pngcs
                         copy = true;
                     if (safe && ChunkHelper.maskMatch(copy_mask, ChunkCopyBehaviour.COPY_ALL_SAFE))
                         copy = true;
-                    if (chunk.Id.Equals(ChunkHelper.tRNS)
+                    if (chunk.Id.Equals(ChunkHelper.tRNS, StringComparison.Ordinal)
                             && ChunkHelper.maskMatch(copy_mask, ChunkCopyBehaviour.COPY_TRANSPARENCY))
                         copy = true;
-                    if (chunk.Id.Equals(ChunkHelper.pHYs) && ChunkHelper.maskMatch(copy_mask, ChunkCopyBehaviour.COPY_PHYS))
+                    if (chunk.Id.Equals(ChunkHelper.pHYs, StringComparison.Ordinal) && ChunkHelper.maskMatch(copy_mask, ChunkCopyBehaviour.COPY_PHYS))
                         copy = true;
                     if (text && ChunkHelper.maskMatch(copy_mask, ChunkCopyBehaviour.COPY_TEXTUAL))
                         copy = true;
                     if (ChunkHelper.maskMatch(copy_mask, ChunkCopyBehaviour.COPY_ALMOSTALL)
-                            && !(ChunkHelper.IsUnknown(chunk) || text || chunk.Id.Equals(ChunkHelper.hIST) || chunk.Id
-                                    .Equals(ChunkHelper.tIME)))
+                            && !(ChunkHelper.IsUnknown(chunk) ||
+                                text ||
+                                chunk.Id.Equals(ChunkHelper.hIST, StringComparison.Ordinal) ||
+                                chunk.Id.Equals(ChunkHelper.tIME, StringComparison.Ordinal)))
                         copy = true;
                     if (chunk is PngChunkSkipped)
                         copy = false;

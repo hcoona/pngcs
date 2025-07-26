@@ -80,7 +80,7 @@ namespace SamplesTests
                 string key = ct.GetKey();
                 string val = ct.GetVal();
                 Console.WriteLine(c.Id + " chunk. Key:" + key + " val='" + val + "'");
-                if (!val.Equals(texts[key]))
+                if (!val.Equals(texts[key], StringComparison.Ordinal))
                 {
                     Console.WriteLine("ERROR: expected '" + texts[key] + "' got '" + val
                             + "' key=" + key + " id=" + c.Id);

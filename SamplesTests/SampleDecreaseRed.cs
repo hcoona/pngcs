@@ -34,7 +34,7 @@ namespace SamplesTests
 
         public static void DecreaseRed(string origFilename, string destFilename)
         {
-            if (origFilename.Equals(destFilename)) throw new PngjException("input and output file cannot coincide");
+            if (origFilename.Equals(destFilename, StringComparison.Ordinal)) throw new PngjException("input and output file cannot coincide");
             PngReader pngr = FileHelper.CreatePngReader(origFilename);
             PngWriter pngw = FileHelper.CreatePngWriter(destFilename, pngr.ImgInfo, true);
             Console.WriteLine(pngr.ToString());

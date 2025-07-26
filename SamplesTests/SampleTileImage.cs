@@ -33,7 +33,7 @@ namespace SampleTests
 
         public static void tile(string orig, string dest, int factor)
         {
-            if (orig.Equals(dest)) throw new PngjException("input and output file cannot coincide");
+            if (orig.Equals(dest, System.StringComparison.Ordinal)) throw new PngjException("input and output file cannot coincide");
             if (factor < 2 || factor > 100) throw new PngjException("bad factor ");
             PngReader pngr = FileHelper.CreatePngReader(orig);
             var x = pngr.ImgInfo;

@@ -22,6 +22,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+using System;
+
 namespace Hjg.Pngcs.Chunks
 {
     /// <summary>
@@ -36,7 +38,7 @@ namespace Hjg.Pngcs.Chunks
         }
         public bool Matches(PngChunk c)
         {
-            return c.Id.Equals(id);
+            return c.Id.Equals(id, StringComparison.Ordinal);
         }
     }
 }

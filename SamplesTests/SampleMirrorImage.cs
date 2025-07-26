@@ -33,7 +33,7 @@ namespace SampleTests
 
         public static void mirror(string orig, string dest)
         {
-            if (orig.Equals(dest)) throw new PngjException("input and output file cannot coincide");
+            if (orig.Equals(dest, System.StringComparison.Ordinal)) throw new PngjException("input and output file cannot coincide");
 
             PngReader pngr = FileHelper.CreatePngReader(orig);
             PngWriter pngw = FileHelper.CreatePngWriter(dest, pngr.ImgInfo, true);

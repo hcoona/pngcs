@@ -22,6 +22,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+using System;
+
 namespace Hjg.Pngcs.Chunks
 {
     /// <summary>
@@ -43,11 +45,11 @@ namespace Hjg.Pngcs.Chunks
         }
         public bool Matches(PngChunk c)
         {
-            if (!c.Id.Equals(id))
+            if (!c.Id.Equals(id, StringComparison.Ordinal))
                 return false;
-            if (c is PngChunkTextVar && !((PngChunkTextVar)c).GetKey().Equals(innerid))
+            if (c is PngChunkTextVar && !((PngChunkTextVar)c).GetKey().Equals(innerid, StringComparison.Ordinal))
                 return false;
-            if (c is PngChunkSPLT && !((PngChunkSPLT)c).PalName.Equals(innerid))
+            if (c is PngChunkSPLT && !((PngChunkSPLT)c).PalName.Equals(innerid, StringComparison.Ordinal))
                 return false;
 
             return true;
