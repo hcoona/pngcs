@@ -32,7 +32,7 @@ namespace Hjg.Pngcs.Zlib
     {
         public static AZlibInputStream createZlibInputStream(Stream st, bool leaveOpen)
         {
-            return new ZlibInputStreamMs(st, leaveOpen);
+            return new AZlibInputStream(st, leaveOpen);
         }
 
         public static AZlibInputStream createZlibInputStream(Stream st)
