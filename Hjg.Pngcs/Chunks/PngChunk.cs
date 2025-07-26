@@ -27,6 +27,7 @@ namespace Hjg.Pngcs.Chunks
 
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using Hjg.Pngcs;
 
@@ -116,46 +117,76 @@ namespace Hjg.Pngcs.Chunks
             this.Offset = 0;
         }
 
-        private static Dictionary<string, Type> factoryMap = initFactory();
+        private static Dictionary<string, Func<ImageInfo, PngChunk>> factoryMap = initFactory();
 
-        private static Dictionary<string, Type> initFactory()
+        private static Dictionary<string, Func<ImageInfo, PngChunk>> initFactory()
         {
-            Dictionary<string, Type> f = new Dictionary<string, System.Type>();
-            f.Add(ChunkHelper.IDAT, typeof(PngChunkIDAT));
-            f.Add(ChunkHelper.IHDR, typeof(PngChunkIHDR));
-            f.Add(ChunkHelper.PLTE, typeof(PngChunkPLTE));
-            f.Add(ChunkHelper.IEND, typeof(PngChunkIEND));
-            f.Add(ChunkHelper.tEXt, typeof(PngChunkTEXT));
-            f.Add(ChunkHelper.iTXt, typeof(PngChunkITXT));
-            f.Add(ChunkHelper.zTXt, typeof(PngChunkZTXT));
-            f.Add(ChunkHelper.bKGD, typeof(PngChunkBKGD));
-            f.Add(ChunkHelper.gAMA, typeof(PngChunkGAMA));
-            f.Add(ChunkHelper.pHYs, typeof(PngChunkPHYS));
-            f.Add(ChunkHelper.iCCP, typeof(PngChunkICCP));
-            f.Add(ChunkHelper.tIME, typeof(PngChunkTIME));
-            f.Add(ChunkHelper.tRNS, typeof(PngChunkTRNS));
-            f.Add(ChunkHelper.cHRM, typeof(PngChunkCHRM));
-            f.Add(ChunkHelper.sBIT, typeof(PngChunkSBIT));
-            f.Add(ChunkHelper.sRGB, typeof(PngChunkSRGB));
-            f.Add(ChunkHelper.hIST, typeof(PngChunkHIST));
-            f.Add(ChunkHelper.sPLT, typeof(PngChunkSPLT));
+            Dictionary<string, Func<ImageInfo, PngChunk>> f = new Dictionary<string, Func<ImageInfo, PngChunk>>();
+            f.Add(ChunkHelper.IDAT, info => new PngChunkIDAT(info, 0, 0)); // Special case: IDAT needs len and offset, set defaults
+            f.Add(ChunkHelper.IHDR, info => new PngChunkIHDR(info));
+            f.Add(ChunkHelper.PLTE, info => new PngChunkPLTE(info));
+            f.Add(ChunkHelper.IEND, info => new PngChunkIEND(info));
+            f.Add(ChunkHelper.tEXt, info => new PngChunkTEXT(info));
+            f.Add(ChunkHelper.iTXt, info => new PngChunkITXT(info));
+            f.Add(ChunkHelper.zTXt, info => new PngChunkZTXT(info));
+            f.Add(ChunkHelper.bKGD, info => new PngChunkBKGD(info));
+            f.Add(ChunkHelper.gAMA, info => new PngChunkGAMA(info));
+            f.Add(ChunkHelper.pHYs, info => new PngChunkPHYS(info));
+            f.Add(ChunkHelper.iCCP, info => new PngChunkICCP(info));
+            f.Add(ChunkHelper.tIME, info => new PngChunkTIME(info));
+            f.Add(ChunkHelper.tRNS, info => new PngChunkTRNS(info));
+            f.Add(ChunkHelper.cHRM, info => new PngChunkCHRM(info));
+            f.Add(ChunkHelper.sBIT, info => new PngChunkSBIT(info));
+            f.Add(ChunkHelper.sRGB, info => new PngChunkSRGB(info));
+            f.Add(ChunkHelper.hIST, info => new PngChunkHIST(info));
+            f.Add(ChunkHelper.sPLT, info => new PngChunkSPLT(info));
             // extended
-            f.Add(PngChunkOFFS.ID, typeof(PngChunkOFFS));
-            f.Add(PngChunkSTER.ID, typeof(PngChunkSTER));
+            f.Add(PngChunkOFFS.ID, info => new PngChunkOFFS(info));
+            f.Add(PngChunkSTER.ID, info => new PngChunkSTER(info));
             return f;
         }
+
 
         /// <summary>
         /// Registers a Chunk ID in the factory, to instantiate a given type
         /// </summary>
         /// <remarks>
-        /// This can be called by client code to register additional chunk types
+        /// This can be called by client code to register additional chunk types.
+        /// This method is provided for backward compatibility and internally uses reflection 
+        /// to create a factory function.
         /// </remarks>
         /// <param name="chunkId"></param>
         /// <param name="type">should extend PngChunkSingle or PngChunkMultiple</param>
+#if NET5_0_OR_GREATER
+        [RequiresUnreferencedCode("Uses reflection to create chunk instances. Consider using the overload that takes Func<ImageInfo, PngChunk> instead.")]
+        public static void FactoryRegister(
+            string chunkId,
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type type)
+#else
         public static void FactoryRegister(string chunkId, Type type)
+#endif
         {
-            factoryMap.Add(chunkId, type);
+            // Use reflection to create a factory function for backward compatibility
+            System.Reflection.ConstructorInfo constructor = type.GetConstructor(new Type[] { typeof(ImageInfo) });
+            if (constructor == null)
+            {
+                throw new PngjException($"Type {type.Name} does not have a constructor that takes ImageInfo parameter");
+            }
+
+            factoryMap.Add(chunkId, info => (PngChunk)constructor.Invoke(new object[] { info }));
+        }
+
+        /// <summary>
+        /// Registers a Chunk ID in the factory, to instantiate a given factory function
+        /// </summary>
+        /// <remarks>
+        /// This can be called by client code to register additional chunk types
+        /// </remarks>
+        /// <param name="chunkId"></param>
+        /// <param name="factory">Factory function that takes ImageInfo and returns PngChunk</param>
+        public static void FactoryRegister(string chunkId, Func<ImageInfo, PngChunk> factory)
+        {
+            factoryMap.Add(chunkId, factory);
         }
 
         internal static bool isKnown(string id)
@@ -181,8 +212,20 @@ namespace Hjg.Pngcs.Chunks
 
         internal static PngChunk Factory(ChunkRaw chunk, ImageInfo info)
         {
-            PngChunk c = FactoryFromId(ChunkHelper.ToString(chunk.IdBytes), info);
-            c.Length = chunk.Len;
+            PngChunk c;
+            string chunkId = ChunkHelper.ToString(chunk.IdBytes);
+
+            // Special handling for IDAT chunk which requires len and offset in constructor
+            if (chunkId == ChunkHelper.IDAT)
+            {
+                c = new PngChunkIDAT(info, chunk.Len, 0); // offset is set later if needed
+            }
+            else
+            {
+                c = FactoryFromId(chunkId, info);
+                c.Length = chunk.Len;
+            }
+
             c.ParseFromRaw(chunk);
             return c;
         }
@@ -198,11 +241,9 @@ namespace Hjg.Pngcs.Chunks
             if (factoryMap == null) initFactory();
             if (isKnown(cid))
             {
-                Type t = factoryMap[cid];
-                if (t == null) Console.Error.WriteLine("What?? " + cid);
-                System.Reflection.ConstructorInfo cons = t.GetConstructor(new Type[] { typeof(ImageInfo) });
-                object o = cons.Invoke(new object[] { info });
-                chunk = (PngChunk)o;
+                Func<ImageInfo, PngChunk> factory = factoryMap[cid];
+                if (factory == null) Console.Error.WriteLine("What?? " + cid);
+                chunk = factory(info);
             }
             if (chunk == null)
                 chunk = new PngChunkUNKNOWN(cid, info);
