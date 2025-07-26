@@ -32,7 +32,7 @@ namespace SamplesTests
     public class TestsHelper
     {
 
-        static string tempDir = "C:/temp";
+        static string tempDir = "temp";
 
         public static void testEqual(string image1, string image2)
         {

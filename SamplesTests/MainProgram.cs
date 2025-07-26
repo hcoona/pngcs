@@ -35,7 +35,10 @@ namespace SamplesTests
 
         static void Main(string[] args)
         {
+            Console.WriteLine("Starting all tests...");
             long t0 = Environment.TickCount;
+            System.IO.Directory.CreateDirectory("temp");
+            System.IO.Directory.CreateDirectory("testcs");
             //testX();
             myTestSuite();
             //testTextChunks();
@@ -45,15 +48,9 @@ namespace SamplesTests
             Console.In.ReadLine();
         }
 
-        static void testX()
-        { // placeholder method for misc tests
-            PngReader png = FileHelper.CreatePngReader("C:/temp/map.png");
-            Console.Out.WriteLine(png);
-        }
-
         static void myTestSuite()
         {
-            testSuite(new string[] { "d:/devel/repositories/pnjgs/pnjg/resources/testsuite1/", "D:/temp/testcs" });
+            testSuite(new string[] { "testsuite1/", "testcs/" });
         }
 
         /// <summary>
