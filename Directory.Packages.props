@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Please sort the items in each group in alphabetical order -->
+  <ItemGroup Label="Direct">
+  </ItemGroup>
+</Project>
