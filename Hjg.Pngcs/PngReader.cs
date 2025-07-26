@@ -57,7 +57,7 @@ namespace Hjg.Pngcs
     /// 6. End() forcibly finishes/aborts the reading and closes the stream
     ///
     /// </remarks>
-    public class PngReader
+    public class PngReader : IDisposable
     {
         /// <summary>
         /// Basic image info, inmutable
@@ -176,6 +176,7 @@ namespace Hjg.Pngcs
         internal PngIDatChunkInputStream iIdatCstream;
 
         protected Adler32 crctest; // If set to non null, it gets a CRC of the unfiltered bytes, to check for images equality
+        private bool disposedValue;
 
         /// <summary>
         /// Constructs a PngReader from a Stream, with no filename information
@@ -898,5 +899,28 @@ namespace Hjg.Pngcs
             this.crctest = new Adler32();
         }
 
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    iIdatCstream?.Dispose();
+                }
+
+                rowb = null;
+                rowbprev = null;
+                rowbfilter = null; ;
+
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
     }
 }

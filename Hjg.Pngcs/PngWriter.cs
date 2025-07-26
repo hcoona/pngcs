@@ -34,7 +34,7 @@ namespace Hjg.Pngcs
     /// <summary>
     ///  Writes a PNG image, line by line.
     /// </summary>
-    public class PngWriter
+    public class PngWriter : IDisposable
     {
         /// <summary>
         /// Basic image info, inmutable
@@ -121,6 +121,7 @@ namespace Hjg.Pngcs
         // this only influences the 1-2-4 bitdepth format - and if we pass a ImageLine to writeRow, this is ignored
         private bool unpackedMode;
         private bool needsPack; // autocomputed
+        private bool disposedValue;
 
         /// <summary>
         /// Constructs a PngWriter from a outputStream, with no filename information
@@ -696,6 +697,31 @@ namespace Hjg.Pngcs
         {
             this.unpackedMode = useUnpackedMode;
             needsPack = unpackedMode && ImgInfo.Packed;
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    datStream?.Dispose();
+                }
+
+                rowb = null;
+                rowbprev = null;
+                rowbfilter = null;
+                histox = null;
+
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }
