@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard2.1;net8.0;net9.0</TargetFrameworks>
 
@@ -23,21 +22,20 @@
     <AssemblyName>Hjg.Pngcs</AssemblyName>
     <AssemblyTitle>Hjg.Pngcs</AssemblyTitle>
     <Description>PNGCS: A library for read-write PNG images</Description>
-    <Company>http://hjg.com.ar/</Company>
+    <Authors>Shuai Zhang, Hernán J. González</Authors>
+    <Company>Shuai Zhang</Company>
     <Product>Hjg.Pngcs</Product>
-    <Copyright>Copyright © 2012</Copyright>
-    <AssemblyVersion>1.1.5.1</AssemblyVersion>
-    <FileVersion>1.1.5.1</FileVersion>
+    <Copyright>Copyright (c) Shuai Zhang 2025</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Label="Nuspec">
     <PackageId>IO.Github.Hcoona.Pngcs</PackageId>
-    <PackageReadmeFile>readme.md</PackageReadmeFile>
-    <PackageVersion>1.1.5-beta.1</PackageVersion>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="../readme.md" Pack="true" PackagePath="\" />
+    <None Include="../README.md" Pack="true" PackagePath="\" />
     <None Include="../changes.txt" />
   </ItemGroup>
 
