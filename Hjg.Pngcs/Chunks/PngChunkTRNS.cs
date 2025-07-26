@@ -33,7 +33,7 @@ namespace Hjg.Pngcs.Chunks
     /// </summary>
     public class PngChunkTRNS : PngChunkSingle
     {
-        public const String ID = ChunkHelper.tRNS;
+        public const string ID = ChunkHelper.tRNS;
 
         // this chunk structure depends on the image type
         // only one of these is meaningful
@@ -55,7 +55,7 @@ namespace Hjg.Pngcs.Chunks
             if (ImgInfo.Greyscale)
             {
                 c = createEmptyChunk(2, true);
-                Hjg.Pngcs.PngHelperInternal.WriteInt2tobytes(gray, c.Data, 0);
+                PngHelperInternal.WriteInt2tobytes(gray, c.Data, 0);
             }
             else if (ImgInfo.Indexed)
             {
@@ -68,9 +68,9 @@ namespace Hjg.Pngcs.Chunks
             else
             {
                 c = createEmptyChunk(6, true);
-                Hjg.Pngcs.PngHelperInternal.WriteInt2tobytes(red, c.Data, 0);
-                Hjg.Pngcs.PngHelperInternal.WriteInt2tobytes(green, c.Data, 0);
-                Hjg.Pngcs.PngHelperInternal.WriteInt2tobytes(blue, c.Data, 0);
+                PngHelperInternal.WriteInt2tobytes(red, c.Data, 0);
+                PngHelperInternal.WriteInt2tobytes(green, c.Data, 0);
+                PngHelperInternal.WriteInt2tobytes(blue, c.Data, 0);
             }
             return c;
         }
@@ -79,7 +79,7 @@ namespace Hjg.Pngcs.Chunks
         {
             if (ImgInfo.Greyscale)
             {
-                gray = Hjg.Pngcs.PngHelperInternal.ReadInt2fromBytes(c.Data, 0);
+                gray = PngHelperInternal.ReadInt2fromBytes(c.Data, 0);
             }
             else if (ImgInfo.Indexed)
             {
@@ -92,9 +92,9 @@ namespace Hjg.Pngcs.Chunks
             }
             else
             {
-                red = Hjg.Pngcs.PngHelperInternal.ReadInt2fromBytes(c.Data, 0);
-                green = Hjg.Pngcs.PngHelperInternal.ReadInt2fromBytes(c.Data, 2);
-                blue = Hjg.Pngcs.PngHelperInternal.ReadInt2fromBytes(c.Data, 4);
+                red = PngHelperInternal.ReadInt2fromBytes(c.Data, 0);
+                green = PngHelperInternal.ReadInt2fromBytes(c.Data, 2);
+                blue = PngHelperInternal.ReadInt2fromBytes(c.Data, 4);
             }
         }
 
@@ -108,7 +108,7 @@ namespace Hjg.Pngcs.Chunks
             if (otherx.paletteAlpha != null)
             {
                 paletteAlpha = new int[otherx.paletteAlpha.Length];
-                System.Array.Copy(otherx.paletteAlpha, 0, paletteAlpha, 0, paletteAlpha.Length);
+                Array.Copy(otherx.paletteAlpha, 0, paletteAlpha, 0, paletteAlpha.Length);
             }
         }
 

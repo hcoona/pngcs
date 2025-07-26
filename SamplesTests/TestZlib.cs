@@ -64,7 +64,7 @@ namespace TestNet45
             long t0 = Environment.TickCount;
             for (int n = 0; n < 2000; n++)
             {
-                String f = "C:/temp/z/zlibcs" + n + ".bin";
+                string f = "C:/temp/z/zlibcs" + n + ".bin";
                 Stream bos = new FileStream(f, FileMode.Open);
                 AZlibInputStream ist = ZlibStreamFactory.createZlibInputStream(bos, false);
                 if (n == 0) Console.WriteLine("Using: " + ist);

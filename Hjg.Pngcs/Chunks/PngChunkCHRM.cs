@@ -24,8 +24,6 @@
 
 namespace Hjg.Pngcs.Chunks
 {
-
-    using System;
     using Hjg.Pngcs;
 
     /// <summary>
@@ -33,7 +31,7 @@ namespace Hjg.Pngcs.Chunks
     /// </summary>
     public class PngChunkCHRM : PngChunkSingle
     {
-        public const String ID = ChunkHelper.cHRM;
+        public const string ID = ChunkHelper.cHRM;
 
         private double whitex, whitey;
         private double redx, redy;

@@ -34,11 +34,11 @@ namespace Hjg.Pngcs.Chunks
     /// </summary>
     public class PngChunkSPLT : PngChunkMultiple
     {
-        public const String ID = ChunkHelper.sPLT;
+        public const string ID = ChunkHelper.sPLT;
         /// <summary>
         /// Must be unique in image
         /// </summary>
-        public String PalName { get; set; }
+        public string PalName { get; set; }
         /// <summary>
         /// 8-16
         /// </summary>
@@ -139,7 +139,7 @@ namespace Hjg.Pngcs.Chunks
             PalName = otherx.PalName;
             SampleDepth = otherx.SampleDepth;
             Palette = new int[otherx.Palette.Length];
-            System.Array.Copy(otherx.Palette, 0, Palette, 0, Palette.Length);
+            Array.Copy(otherx.Palette, 0, Palette, 0, Palette.Length);
 
         }
 

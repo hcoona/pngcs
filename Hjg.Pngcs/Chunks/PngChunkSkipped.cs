@@ -22,13 +22,11 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-using System;
-
 namespace Hjg.Pngcs.Chunks
 {
     class PngChunkSkipped : PngChunk
     {
-        internal PngChunkSkipped(String id, ImageInfo imgInfo, int clen)
+        internal PngChunkSkipped(string id, ImageInfo imgInfo, int clen)
             : base(id, imgInfo)
         {
             this.Length = clen;

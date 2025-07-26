@@ -61,7 +61,7 @@ namespace SamplesTests
             Console.Out.WriteLine("Done. Writen : " + target);
         }
 
-        public static void testRead(String file)
+        public static void testRead(string file)
         {
             // register with factory chunk
             PngChunk.FactoryRegister(PngChunkSERI.ID, typeof(PngChunkSERI));
@@ -95,7 +95,7 @@ namespace SamplesTests
         // ID[0] : lowercase (ancillary)
         // ID[1] : lowercase if private, upppecase if public
         // ID[3] : uppercase if "safe to copy"
-        public readonly static String ID = "seRi";
+        public readonly static string ID = "seRi";
 
         private DummyClass obj;
 

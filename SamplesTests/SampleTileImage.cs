@@ -24,8 +24,6 @@
 
 namespace SampleTests
 {
-
-    using System;
     using Hjg.Pngcs;
     using Hjg.Pngcs.Chunks;
 
@@ -33,7 +31,7 @@ namespace SampleTests
     public class SampleTileImage
     {
 
-        public static void tile(String orig, String dest, int factor)
+        public static void tile(string orig, string dest, int factor)
         {
             if (orig.Equals(dest)) throw new PngjException("input and output file cannot coincide");
             if (factor < 2 || factor > 100) throw new PngjException("bad factor ");

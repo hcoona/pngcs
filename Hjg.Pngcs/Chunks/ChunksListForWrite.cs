@@ -24,8 +24,6 @@
 
 namespace Hjg.Pngcs.Chunks
 {
-
-    using System;
     using System.Collections.Generic;
     using System.IO;
     using Hjg.Pngcs;
@@ -41,13 +39,13 @@ namespace Hjg.Pngcs.Chunks
         private List<PngChunk> queuedChunks; // chunks not yet writen - does not include IHDR, IDAT, END, perhaps yes PLTE
 
         // redundant, just for eficciency
-        private Dictionary<String, int> alreadyWrittenKeys;
+        private Dictionary<string, int> alreadyWrittenKeys;
 
         internal ChunksListForWrite(ImageInfo info)
             : base(info)
         {
             this.queuedChunks = new List<PngChunk>();
-            this.alreadyWrittenKeys = new Dictionary<String, int>();
+            this.alreadyWrittenKeys = new Dictionary<string, int>();
         }
 
         /// <summary>
@@ -55,7 +53,7 @@ namespace Hjg.Pngcs.Chunks
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public List<PngChunk> GetQueuedById(String id)
+        public List<PngChunk> GetQueuedById(string id)
         {
             return GetQueuedById(id, null);
         }
@@ -65,7 +63,7 @@ namespace Hjg.Pngcs.Chunks
         /// <param name="id"></param>
         /// <param name="innerid"></param>
         /// <returns></returns>
-        public List<PngChunk> GetQueuedById(String id, String innerid)
+        public List<PngChunk> GetQueuedById(string id, string innerid)
         {
             return GetXById(queuedChunks, id, innerid);
         }
@@ -77,7 +75,7 @@ namespace Hjg.Pngcs.Chunks
         /// <param name="innerid"></param>
         /// <param name="failIfMultiple"></param>
         /// <returns></returns>
-        public PngChunk GetQueuedById1(String id, String innerid, bool failIfMultiple)
+        public PngChunk GetQueuedById1(string id, string innerid, bool failIfMultiple)
         {
             List<PngChunk> list = GetQueuedById(id, innerid);
             if (list.Count == 0)
@@ -92,7 +90,7 @@ namespace Hjg.Pngcs.Chunks
         /// <param name="id"></param>
         /// <param name="failIfMultiple"></param>
         /// <returns></returns>
-        public PngChunk GetQueuedById1(String id, bool failIfMultiple)
+        public PngChunk GetQueuedById1(string id, bool failIfMultiple)
         {
             return GetQueuedById1(id, null, failIfMultiple);
         }
@@ -101,7 +99,7 @@ namespace Hjg.Pngcs.Chunks
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public PngChunk GetQueuedById1(String id)
+        public PngChunk GetQueuedById1(string id)
         {
             return GetQueuedById1(id, false);
         }
@@ -143,17 +141,17 @@ namespace Hjg.Pngcs.Chunks
                 throw new PngjOutputException("bad chunk group?");
             int minChunkGroup, maxChunkGroup;
             if (c.mustGoBeforePLTE())
-                minChunkGroup = maxChunkGroup = ChunksList.CHUNK_GROUP_1_AFTERIDHR;
+                minChunkGroup = maxChunkGroup = CHUNK_GROUP_1_AFTERIDHR;
             else if (c.mustGoBeforeIDAT())
             {
-                maxChunkGroup = ChunksList.CHUNK_GROUP_3_AFTERPLTE;
-                minChunkGroup = c.mustGoAfterPLTE() ? ChunksList.CHUNK_GROUP_3_AFTERPLTE
-                        : ChunksList.CHUNK_GROUP_1_AFTERIDHR;
+                maxChunkGroup = CHUNK_GROUP_3_AFTERPLTE;
+                minChunkGroup = c.mustGoAfterPLTE() ? CHUNK_GROUP_3_AFTERPLTE
+                        : CHUNK_GROUP_1_AFTERIDHR;
             }
             else
             {
-                maxChunkGroup = ChunksList.CHUNK_GROUP_5_AFTERIDAT;
-                minChunkGroup = ChunksList.CHUNK_GROUP_1_AFTERIDHR;
+                maxChunkGroup = CHUNK_GROUP_5_AFTERIDAT;
+                minChunkGroup = CHUNK_GROUP_1_AFTERIDHR;
             }
 
             int preferred = maxChunkGroup;

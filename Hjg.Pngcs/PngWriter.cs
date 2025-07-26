@@ -24,8 +24,6 @@
 
 namespace Hjg.Pngcs
 {
-
-    using System;
     using System.Collections.Generic;
     using System.IO;
     using Chunks;
@@ -44,7 +42,7 @@ namespace Hjg.Pngcs
         /// <summary>
         /// filename, or description - merely informative, can be empty
         /// </summary>
-        protected readonly String filename;
+        protected readonly string filename;
 
         private FilterWriteStrategy filterStrat;
 
@@ -137,7 +135,7 @@ namespace Hjg.Pngcs
         /// <param name="imgInfo">Basic image parameters</param>
         /// <param name="filename">Optional, can be the filename or a description.</param>
         public PngWriter(Stream outputStream, ImageInfo imgInfo,
-                String filename)
+                string filename)
         {
             this.filename = (filename == null) ? "" : filename;
             this.outputStream = outputStream;
@@ -229,7 +227,7 @@ namespace Hjg.Pngcs
         private void WriteSignatureAndIHDR()
         {
             CurrentChunkGroup = ChunksList.CHUNK_GROUP_0_IDHR;
-            PngHelperInternal.WriteBytes(outputStream, Hjg.Pngcs.PngHelperInternal.PNG_ID_SIGNATURE); // signature
+            PngHelperInternal.WriteBytes(outputStream, PngHelperInternal.PNG_ID_SIGNATURE); // signature
             PngChunkIHDR ihdr = new PngChunkIHDR(ImgInfo);
             // http://www.libpng.org/pub/png/spec/1.2/PNG-Chunks.html
             ihdr.Cols = ImgInfo.Cols;
@@ -364,19 +362,19 @@ namespace Hjg.Pngcs
             rowbfilter[0] = (byte)(int)filterType;
             switch (filterType)
             {
-                case Hjg.Pngcs.FilterType.FILTER_NONE:
+                case FilterType.FILTER_NONE:
                     FilterRowNone();
                     break;
-                case Hjg.Pngcs.FilterType.FILTER_SUB:
+                case FilterType.FILTER_SUB:
                     FilterRowSub();
                     break;
-                case Hjg.Pngcs.FilterType.FILTER_UP:
+                case FilterType.FILTER_UP:
                     FilterRowUp();
                     break;
-                case Hjg.Pngcs.FilterType.FILTER_AVERAGE:
+                case FilterType.FILTER_AVERAGE:
                     FilterRowAverage();
                     break;
-                case Hjg.Pngcs.FilterType.FILTER_PAETH:
+                case FilterType.FILTER_PAETH:
                     FilterRowPaeth();
                     break;
                 default:
@@ -579,7 +577,7 @@ namespace Hjg.Pngcs
         ///  Filename or description, from the optional constructor argument.
         /// </summary>
         /// <returns></returns>
-        public String GetFilename()
+        public string GetFilename()
         {
             return filename;
         }

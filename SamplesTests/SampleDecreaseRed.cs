@@ -32,7 +32,7 @@ namespace SamplesTests
     class SampleDecreaseRed
     {
 
-        public static void DecreaseRed(String origFilename, String destFilename)
+        public static void DecreaseRed(string origFilename, string destFilename)
         {
             if (origFilename.Equals(destFilename)) throw new PngjException("input and output file cannot coincide");
             PngReader pngr = FileHelper.CreatePngReader(origFilename);

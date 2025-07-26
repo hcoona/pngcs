@@ -24,8 +24,6 @@
 
 namespace Hjg.Pngcs.Chunks
 {
-
-    using System;
     using System.IO;
     using Hjg.Pngcs;
     /// <summary>
@@ -34,7 +32,7 @@ namespace Hjg.Pngcs.Chunks
     /// </summary>
     public class PngChunkZTXT : PngChunkTextVar
     {
-        public const String ID = ChunkHelper.zTXt;
+        public const string ID = ChunkHelper.zTXt;
 
         public PngChunkZTXT(ImageInfo info)
             : base(ID, info)

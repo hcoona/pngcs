@@ -38,7 +38,7 @@ namespace SamplesTests
 
         public static void test()
         {
-            Dictionary<string, string> texts = new Dictionary<String, String>();
+            Dictionary<string, string> texts = new Dictionary<string, string>();
             texts.Add("key1", "val");
             texts.Add("empty1", "");
             texts.Add("unicode1", "Hernán");
@@ -52,7 +52,7 @@ namespace SamplesTests
             texts.Add("unicode3", "Hernán");
             texts.Add("zero3", "Hola\0chau");
             texts.Add("nolatin1", "Hernán\u1230");
-            String suffix = "text";
+            string suffix = "text";
             PngWriter png = TestsHelper.prepareFileTmp(suffix);
             png.GetMetadata().SetText("key1", texts["key1"], false, false);
             png.GetMetadata().SetText("key2", texts["key2"], true, false);
@@ -77,8 +77,8 @@ namespace SamplesTests
                     continue;
                 ok++;
                 PngChunkTextVar ct = (PngChunkTextVar)c;
-                String key = ct.GetKey();
-                String val = ct.GetVal();
+                string key = ct.GetKey();
+                string val = ct.GetVal();
                 Console.WriteLine(c.Id + " chunk. Key:" + key + " val='" + val + "'");
                 if (!val.Equals(texts[key]))
                 {

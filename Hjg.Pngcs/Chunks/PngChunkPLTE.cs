@@ -35,7 +35,7 @@ namespace Hjg.Pngcs.Chunks
     /// </summary>
     public class PngChunkPLTE : PngChunkSingle
     {
-        public const String ID = ChunkHelper.PLTE;
+        public const string ID = ChunkHelper.PLTE;
 
         private int nentries = 0;
 
@@ -85,7 +85,7 @@ namespace Hjg.Pngcs.Chunks
         {
             PngChunkPLTE otherx = (PngChunkPLTE)other;
             this.SetNentries(otherx.GetNentries());
-            System.Array.Copy((Array)(otherx.entries), 0, (Array)(entries), 0, nentries);
+            Array.Copy((Array)(otherx.entries), 0, (Array)(entries), 0, nentries);
         }
 
         /// <summary>

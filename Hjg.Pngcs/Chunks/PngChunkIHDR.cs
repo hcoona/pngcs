@@ -24,8 +24,6 @@
 
 namespace Hjg.Pngcs.Chunks
 {
-
-    using System;
     using System.IO;
     using Hjg.Pngcs;
 
@@ -34,7 +32,7 @@ namespace Hjg.Pngcs.Chunks
     /// </summary>
     public class PngChunkIHDR : PngChunkSingle
     {
-        public const String ID = ChunkHelper.IHDR;
+        public const string ID = ChunkHelper.IHDR;
         public int Cols { get; set; }
         public int Rows { get; set; }
         public int Bitspc { get; set; }
@@ -57,9 +55,9 @@ namespace Hjg.Pngcs.Chunks
         {
             ChunkRaw c = new ChunkRaw(13, ChunkHelper.b_IHDR, true);
             int offset = 0;
-            Hjg.Pngcs.PngHelperInternal.WriteInt4tobytes(Cols, c.Data, offset);
+            PngHelperInternal.WriteInt4tobytes(Cols, c.Data, offset);
             offset += 4;
-            Hjg.Pngcs.PngHelperInternal.WriteInt4tobytes(Rows, c.Data, offset);
+            PngHelperInternal.WriteInt4tobytes(Rows, c.Data, offset);
             offset += 4;
             c.Data[offset++] = (byte)Bitspc;
             c.Data[offset++] = (byte)Colormodel;
@@ -74,14 +72,14 @@ namespace Hjg.Pngcs.Chunks
             if (c.Len != 13)
                 throw new PngjException("Bad IDHR len " + c.Len);
             MemoryStream st = c.GetAsByteStream();
-            Cols = Hjg.Pngcs.PngHelperInternal.ReadInt4(st);
-            Rows = Hjg.Pngcs.PngHelperInternal.ReadInt4(st);
+            Cols = PngHelperInternal.ReadInt4(st);
+            Rows = PngHelperInternal.ReadInt4(st);
             // bit depth: number of bits per channel
-            Bitspc = Hjg.Pngcs.PngHelperInternal.ReadByte(st);
-            Colormodel = Hjg.Pngcs.PngHelperInternal.ReadByte(st);
-            Compmeth = Hjg.Pngcs.PngHelperInternal.ReadByte(st);
-            Filmeth = Hjg.Pngcs.PngHelperInternal.ReadByte(st);
-            Interlaced = Hjg.Pngcs.PngHelperInternal.ReadByte(st);
+            Bitspc = PngHelperInternal.ReadByte(st);
+            Colormodel = PngHelperInternal.ReadByte(st);
+            Compmeth = PngHelperInternal.ReadByte(st);
+            Filmeth = PngHelperInternal.ReadByte(st);
+            Interlaced = PngHelperInternal.ReadByte(st);
         }
 
         public override void CloneDataFromRead(PngChunk other)

@@ -24,9 +24,6 @@
 
 namespace Hjg.Pngcs
 {
-
-    using System;
-
     /// <summary>
     /// Simple immutable wrapper for basic image info
     /// </summary>
@@ -185,7 +182,7 @@ namespace Hjg.Pngcs
         /// General information, for debugging
         /// </summary>
         /// <returns>Summary</returns>
-        public override String ToString()
+        public override string ToString()
         {
             return "ImageInfo [cols=" + Cols + ", rows=" + Rows + ", bitDepth=" + BitDepth
                     + ", channels=" + Channels + ", bitspPixel=" + BitspPixel + ", bytesPixel="
@@ -209,13 +206,13 @@ namespace Hjg.Pngcs
             return result;
         }
 
-        public override bool Equals(Object obj)
+        public override bool Equals(object obj)
         {
-            if ((Object)this == obj)
+            if ((object)this == obj)
                 return true;
             if (obj == null)
                 return false;
-            if ((Object)GetType() != (Object)obj.GetType())
+            if ((object)GetType() != (object)obj.GetType())
                 return false;
             ImageInfo other = (ImageInfo)obj;
             if (Alpha != other.Alpha)

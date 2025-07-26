@@ -93,7 +93,7 @@ namespace SamplesTests
                 TestsHelper.testEqual(recov, origni);
             if (interlaced)
                 additionalTestInterlaced(orig, origni);
-            if (palete && System.IO.File.Exists(truecolor))
+            if (palete && File.Exists(truecolor))
                 additionalTestPalette(orig, truecolor);
         }
 
@@ -118,7 +118,7 @@ namespace SamplesTests
             pngr.End();
             pngw.End();
             TestsHelper.testEqual(copy, truecolor);
-            System.IO.File.Delete(copy);
+            File.Delete(copy);
         }
 
         private static void additionalTestInterlaced(string orig, string origni)
@@ -148,7 +148,7 @@ namespace SamplesTests
             pngr.End();
             pngw.End();
             TestsHelper.testEqual(copy, origni);
-            System.IO.File.Delete(copy);
+            File.Delete(copy);
         }
 
         static void mirrorLine(ImageLine imline)
@@ -183,14 +183,14 @@ namespace SamplesTests
             testmirror(orig, origni, truecolor);
         }
 
-        public static void testAllSuite(String dirsrc, String dirdest, int maxfiles)
+        public static void testAllSuite(string dirsrc, string dirdest, int maxfiles)
         {
-            if ((System.IO.File.GetAttributes(dirsrc) & FileAttributes.Directory) != FileAttributes.Directory)
+            if ((File.GetAttributes(dirsrc) & FileAttributes.Directory) != FileAttributes.Directory)
                 throw new Exception("not a directory:" + dirsrc);
             int cont = 0;
             int conterr = 0;
             /* foreach file in the suite */
-            foreach (String fname in System.IO.Directory.GetFiles(dirsrc))
+            foreach (string fname in Directory.GetFiles(dirsrc))
             {
                 FileInfo fi = new FileInfo(fname);
                 string name = fi.Name;
@@ -202,13 +202,13 @@ namespace SamplesTests
                 try
                 {
                     string orig = dirdest + "/" + name;
-                    System.IO.File.Copy(fname, orig, true);
+                    File.Copy(fname, orig, true);
                     cont++;
                     testSingle(orig, TestsHelper.addSuffixToName(fname, "_ni"),
                         TestsHelper.addSuffixToName(fname, "_tc"));
                     if (fi.Name.StartsWith("x"))
                     {
-                        System.Console.Error.WriteLine("this should have failed! " + name);
+                        Console.Error.WriteLine("this should have failed! " + name);
                         conterr++;
                     }
                 }
@@ -216,11 +216,11 @@ namespace SamplesTests
                 {
                     if (fi.Name.StartsWith("x"))
                     { // suppposed to fail
-                        System.Console.Out.WriteLine("ok error with " + name + " " + e.Message);
+                        Console.Out.WriteLine("ok error with " + name + " " + e.Message);
                     }
                     else
                     { // real error
-                        System.Console.Error.WriteLine("error with " + name + " " + e.Message);
+                        Console.Error.WriteLine("error with " + name + " " + e.Message);
                         conterr++;
                         throw;
 
@@ -228,14 +228,14 @@ namespace SamplesTests
                 }
             }
 
-            System.Console.Out.WriteLine("Errors: " + conterr + "/" + cont);
-            System.Console.Out.WriteLine("Lines starting with 'ok error' are expected errors, they are ok.");
-            System.Console.Out.WriteLine("Output dir: " + dirdest);
+            Console.Out.WriteLine("Errors: " + conterr + "/" + cont);
+            Console.Out.WriteLine("Lines starting with 'ok error' are expected errors, they are ok.");
+            Console.Out.WriteLine("Output dir: " + dirdest);
 
             if (conterr == 0)
-                System.Console.Out.WriteLine("=========== SUCCESS ! ================");
+                Console.Out.WriteLine("=========== SUCCESS ! ================");
             else
-                System.Console.Out.WriteLine("---- THERE WERE ERRORS!  :-((( ");
+                Console.Out.WriteLine("---- THERE WERE ERRORS!  :-((( ");
         }
 
 

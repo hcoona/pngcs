@@ -24,8 +24,6 @@
 
 namespace Hjg.Pngcs.Chunks
 {
-
-    using System;
     using Hjg.Pngcs;
 
     /// <summary>
@@ -33,7 +31,7 @@ namespace Hjg.Pngcs.Chunks
     /// </summary>
     public class PngChunkGAMA : PngChunkSingle
     {
-        public const String ID = ChunkHelper.gAMA;
+        public const string ID = ChunkHelper.gAMA;
 
         private double gamma;
 
@@ -51,7 +49,7 @@ namespace Hjg.Pngcs.Chunks
         {
             ChunkRaw c = createEmptyChunk(4, true);
             int g = (int)(gamma * 100000 + 0.5d);
-            Hjg.Pngcs.PngHelperInternal.WriteInt4tobytes(g, c.Data, 0);
+            PngHelperInternal.WriteInt4tobytes(g, c.Data, 0);
             return c;
         }
 
@@ -59,7 +57,7 @@ namespace Hjg.Pngcs.Chunks
         {
             if (chunk.Len != 4)
                 throw new PngjException("bad chunk " + chunk);
-            int g = Hjg.Pngcs.PngHelperInternal.ReadInt4fromBytes(chunk.Data, 0);
+            int g = PngHelperInternal.ReadInt4fromBytes(chunk.Data, 0);
             gamma = ((double)g) / 100000.0d;
         }
 

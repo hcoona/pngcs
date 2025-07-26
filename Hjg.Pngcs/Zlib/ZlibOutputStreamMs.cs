@@ -22,7 +22,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-using System;
 using System.IO;
 using System.IO.Compression;
 // ONLY FOR .NET 4.5
@@ -120,7 +119,7 @@ namespace Hjg.Pngcs.Zlib
             if (deflateStream != null) deflateStream.Flush();
         }
 
-        public override String getImplementationId()
+        public override string getImplementationId()
         {
             return "Zlib deflater: .Net CLR 4.5";
         }

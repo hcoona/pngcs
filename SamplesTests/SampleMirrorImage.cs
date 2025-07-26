@@ -24,8 +24,6 @@
 
 namespace SampleTests
 {
-
-    using System;
     using Hjg.Pngcs;
     using Hjg.Pngcs.Chunks;
 
@@ -33,7 +31,7 @@ namespace SampleTests
     public class SampleMirrorImage
     {
 
-        public static void mirror(String orig, String dest)
+        public static void mirror(string orig, string dest)
         {
             if (orig.Equals(dest)) throw new PngjException("input and output file cannot coincide");
 

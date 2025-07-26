@@ -38,24 +38,24 @@ namespace Hjg.Pngcs.Chunks
     /// </remarks>
     public class ChunkHelper
     {
-        internal const String IHDR = "IHDR";
-        internal const String PLTE = "PLTE";
-        internal const String IDAT = "IDAT";
-        internal const String IEND = "IEND";
-        internal const String cHRM = "cHRM";// No Before PLTE and IDAT
-        internal const String gAMA = "gAMA";// No Before PLTE and IDAT
-        internal const String iCCP = "iCCP";// No Before PLTE and IDAT
-        internal const String sBIT = "sBIT";// No Before PLTE and IDAT
-        internal const String sRGB = "sRGB";// No Before PLTE and IDAT
-        internal const String bKGD = "bKGD";// No After PLTE; before IDAT
-        internal const String hIST = "hIST";// No After PLTE; before IDAT
-        internal const String tRNS = "tRNS";// No After PLTE; before IDAT
-        internal const String pHYs = "pHYs";// No Before IDAT
-        internal const String sPLT = "sPLT";// Yes Before IDAT
-        internal const String tIME = "tIME";// No None
-        internal const String iTXt = "iTXt";// Yes None
-        internal const String tEXt = "tEXt";// Yes None
-        internal const String zTXt = "zTXt";// Yes None
+        internal const string IHDR = "IHDR";
+        internal const string PLTE = "PLTE";
+        internal const string IDAT = "IDAT";
+        internal const string IEND = "IEND";
+        internal const string cHRM = "cHRM";// No Before PLTE and IDAT
+        internal const string gAMA = "gAMA";// No Before PLTE and IDAT
+        internal const string iCCP = "iCCP";// No Before PLTE and IDAT
+        internal const string sBIT = "sBIT";// No Before PLTE and IDAT
+        internal const string sRGB = "sRGB";// No Before PLTE and IDAT
+        internal const string bKGD = "bKGD";// No After PLTE; before IDAT
+        internal const string hIST = "hIST";// No After PLTE; before IDAT
+        internal const string tRNS = "tRNS";// No After PLTE; before IDAT
+        internal const string pHYs = "pHYs";// No Before IDAT
+        internal const string sPLT = "sPLT";// Yes Before IDAT
+        internal const string tIME = "tIME";// No None
+        internal const string iTXt = "iTXt";// Yes None
+        internal const string tEXt = "tEXt";// Yes None
+        internal const string zTXt = "zTXt";// Yes None
         internal static readonly byte[] b_IHDR = ToBytes(IHDR);
         internal static readonly byte[] b_PLTE = ToBytes(PLTE);
         internal static readonly byte[] b_IDAT = ToBytes(IDAT);
@@ -68,9 +68,9 @@ namespace Hjg.Pngcs.Chunks
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
-        public static byte[] ToBytes(String x)
+        public static byte[] ToBytes(string x)
         {
-            return Hjg.Pngcs.PngHelperInternal.charsetLatin1.GetBytes(x);
+            return PngHelperInternal.charsetLatin1.GetBytes(x);
         }
 
         /// <summary>
@@ -78,9 +78,9 @@ namespace Hjg.Pngcs.Chunks
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
-        public static String ToString(byte[] x)
+        public static string ToString(byte[] x)
         {
-            return Hjg.Pngcs.PngHelperInternal.charsetLatin1.GetString(x);
+            return PngHelperInternal.charsetLatin1.GetString(x);
         }
         /// <summary>
         ///  Converts to String using Latin1 (ISO-8859-1)
@@ -89,9 +89,9 @@ namespace Hjg.Pngcs.Chunks
         /// <param name="offset"></param>
         /// <param name="len"></param>
         /// <returns></returns>
-        public static String ToString(byte[] x, int offset, int len)
+        public static string ToString(byte[] x, int offset, int len)
         {
-            return Hjg.Pngcs.PngHelperInternal.charsetLatin1.GetString(x, offset, len);
+            return PngHelperInternal.charsetLatin1.GetString(x, offset, len);
         }
 
         /// <summary>
@@ -99,9 +99,9 @@ namespace Hjg.Pngcs.Chunks
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
-        public static byte[] ToBytesUTF8(String x)
+        public static byte[] ToBytesUTF8(string x)
         {
-            return Hjg.Pngcs.PngHelperInternal.charsetUtf8.GetBytes(x);
+            return PngHelperInternal.charsetUtf8.GetBytes(x);
         }
 
         /// <summary>
@@ -109,9 +109,9 @@ namespace Hjg.Pngcs.Chunks
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
-        public static String ToStringUTF8(byte[] x)
+        public static string ToStringUTF8(byte[] x)
         {
-            return Hjg.Pngcs.PngHelperInternal.charsetUtf8.GetString(x);
+            return PngHelperInternal.charsetUtf8.GetString(x);
         }
         /// <summary>
         /// Converts to string using UTF-8
@@ -120,9 +120,9 @@ namespace Hjg.Pngcs.Chunks
         /// <param name="offset"></param>
         /// <param name="len"></param>
         /// <returns></returns>
-        public static String ToStringUTF8(byte[] x, int offset, int len)
+        public static string ToStringUTF8(byte[] x, int offset, int len)
         {
-            return Hjg.Pngcs.PngHelperInternal.charsetUtf8.GetString(x, offset, len);
+            return PngHelperInternal.charsetUtf8.GetString(x, offset, len);
         }
         /// <summary>
         /// Writes full array of bytes to stream
@@ -139,10 +139,10 @@ namespace Hjg.Pngcs.Chunks
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static bool IsCritical(String id)
+        public static bool IsCritical(string id)
         {
             // first letter is uppercase
-            return (Char.IsUpper(id[0]));
+            return (char.IsUpper(id[0]));
         }
 
         /// <summary>
@@ -150,19 +150,19 @@ namespace Hjg.Pngcs.Chunks
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static bool IsPublic(String id)
+        public static bool IsPublic(string id)
         { // public chunk?
-            return (Char.IsUpper(id[1]));
+            return (char.IsUpper(id[1]));
         }
         /// <summary>
         /// Safe to copy chunk: fourth letter is lower case
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static bool IsSafeToCopy(String id)
+        public static bool IsSafeToCopy(string id)
         { // safe to copy?
             // fourth letter is lower case
-            return (!Char.IsUpper(id[3]));
+            return (!char.IsUpper(id[3]));
         }
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace Hjg.Pngcs.Chunks
         /// <param name="id"></param>
         /// <param name="behav"></param>
         /// <returns></returns>
-        public static bool ShouldLoad(String id, ChunkLoadBehaviour behav)
+        public static bool ShouldLoad(string id, ChunkLoadBehaviour behav)
         {
             if (IsCritical(id))
                 return true;

@@ -22,8 +22,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-using System;
-
 namespace Hjg.Pngcs.Chunks
 {
     /// <summary>
@@ -31,7 +29,7 @@ namespace Hjg.Pngcs.Chunks
     /// </summary>
     public abstract class PngChunkSingle : PngChunk
     {
-        public PngChunkSingle(String id, ImageInfo imgInfo)
+        public PngChunkSingle(string id, ImageInfo imgInfo)
             : base(id, imgInfo)
         {
         }

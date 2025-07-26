@@ -24,8 +24,6 @@
 
 namespace Hjg.Pngcs.Chunks
 {
-
-    using System;
     using Hjg.Pngcs;
 
     /// <summary>
@@ -33,7 +31,7 @@ namespace Hjg.Pngcs.Chunks
     /// </summary>
     public class PngChunkSTER : PngChunkSingle
     {
-        public const String ID = "sTER";
+        public const string ID = "sTER";
 
         /// <summary>
         /// 0: cross-fuse layout 1: diverging-fuse layout

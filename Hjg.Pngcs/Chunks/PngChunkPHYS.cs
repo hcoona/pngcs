@@ -24,15 +24,13 @@
 
 namespace Hjg.Pngcs.Chunks
 {
-
-    using System;
     using Hjg.Pngcs;
     /// <summary>
     /// pHYs chunk: http://www.w3.org/TR/PNG/#11pHYs
     /// </summary>
     public class PngChunkPHYS : PngChunkSingle
     {
-        public const String ID = ChunkHelper.pHYs;
+        public const string ID = ChunkHelper.pHYs;
 
         public long PixelsxUnitX { get; set; }
         public long PixelsxUnitY { get; set; }
@@ -54,8 +52,8 @@ namespace Hjg.Pngcs.Chunks
         public override ChunkRaw CreateRawChunk()
         {
             ChunkRaw c = createEmptyChunk(9, true);
-            Hjg.Pngcs.PngHelperInternal.WriteInt4tobytes((int)PixelsxUnitX, c.Data, 0);
-            Hjg.Pngcs.PngHelperInternal.WriteInt4tobytes((int)PixelsxUnitY, c.Data, 4);
+            PngHelperInternal.WriteInt4tobytes((int)PixelsxUnitX, c.Data, 0);
+            PngHelperInternal.WriteInt4tobytes((int)PixelsxUnitY, c.Data, 4);
             c.Data[8] = (byte)Units;
             return c;
         }
@@ -72,13 +70,13 @@ namespace Hjg.Pngcs.Chunks
         {
             if (chunk.Len != 9)
                 throw new PngjException("bad chunk length " + chunk);
-            PixelsxUnitX = Hjg.Pngcs.PngHelperInternal.ReadInt4fromBytes(chunk.Data, 0);
+            PixelsxUnitX = PngHelperInternal.ReadInt4fromBytes(chunk.Data, 0);
             if (PixelsxUnitX < 0)
                 PixelsxUnitX += 0x100000000L;
-            PixelsxUnitY = Hjg.Pngcs.PngHelperInternal.ReadInt4fromBytes(chunk.Data, 4);
+            PixelsxUnitY = PngHelperInternal.ReadInt4fromBytes(chunk.Data, 4);
             if (PixelsxUnitY < 0)
                 PixelsxUnitY += 0x100000000L;
-            Units = Hjg.Pngcs.PngHelperInternal.ReadInt1fromByte(chunk.Data, 8);
+            Units = PngHelperInternal.ReadInt1fromByte(chunk.Data, 8);
         }
 
         /// <summary>

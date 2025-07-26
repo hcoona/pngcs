@@ -86,7 +86,7 @@ namespace Hjg.Pngcs
             this.lenLastChunk = lenFirstChunk;
             toReadThisChunk = lenFirstChunk;
             // we know it's a IDAT
-            System.Array.Copy((Array)(Hjg.Pngcs.Chunks.ChunkHelper.b_IDAT), 0, (Array)(idLastChunk), 0, 4);
+            Array.Copy((Array)(Chunks.ChunkHelper.b_IDAT), 0, (Array)(idLastChunk), 0, 4);
             crcEngine.Update(idLastChunk, 0, 4);
             foundChunksInfo.Add(new PngIDatChunkInputStream.IdatChunkInfo(lenLastChunk, offset_0 - 8));
             // PngHelper.logdebug("IDAT Initial fragment: len=" + lenLastChunk);
@@ -111,7 +111,7 @@ namespace Hjg.Pngcs
             // Skips empty IDATS
             do
             {
-                int crc = Hjg.Pngcs.PngHelperInternal.ReadInt4(inputStream); //
+                int crc = PngHelperInternal.ReadInt4(inputStream); //
                 offset += 4;
                 if (checkCrc)
                 {
@@ -120,14 +120,14 @@ namespace Hjg.Pngcs
                         throw new PngjBadCrcException("error reading idat; offset: " + offset);
                     crcEngine.Reset();
                 }
-                lenLastChunk = Hjg.Pngcs.PngHelperInternal.ReadInt4(inputStream);
+                lenLastChunk = PngHelperInternal.ReadInt4(inputStream);
                 if (lenLastChunk < 0)
                     throw new PngjInputException("invalid len for chunk: " + lenLastChunk);
                 toReadThisChunk = lenLastChunk;
-                Hjg.Pngcs.PngHelperInternal.ReadBytes(inputStream, idLastChunk, 0, 4);
+                PngHelperInternal.ReadBytes(inputStream, idLastChunk, 0, 4);
                 offset += 8;
 
-                ended = !PngCsUtils.arraysEqual4(idLastChunk, Hjg.Pngcs.Chunks.ChunkHelper.b_IDAT);
+                ended = !PngCsUtils.arraysEqual4(idLastChunk, Chunks.ChunkHelper.b_IDAT);
                 if (!ended)
                 {
                     foundChunksInfo.Add(new PngIDatChunkInputStream.IdatChunkInfo(lenLastChunk, (offset - 8)));
@@ -150,7 +150,7 @@ namespace Hjg.Pngcs
             if (!ended)
             {
                 byte[] dummy = new byte[toReadThisChunk];
-                Hjg.Pngcs.PngHelperInternal.ReadBytes(inputStream, dummy, 0, toReadThisChunk);
+                PngHelperInternal.ReadBytes(inputStream, dummy, 0, toReadThisChunk);
                 if (checkCrc)
                     crcEngine.Update(dummy, 0, toReadThisChunk);
                 EndChunkGoForNext();

@@ -24,8 +24,6 @@
 
 namespace Hjg.Pngcs.Chunks
 {
-
-    using System;
     using Hjg.Pngcs;
 
     /// <summary>
@@ -33,7 +31,7 @@ namespace Hjg.Pngcs.Chunks
     /// </summary>
     public class PngChunkSRGB : PngChunkSingle
     {
-        public const String ID = ChunkHelper.sRGB;
+        public const string ID = ChunkHelper.sRGB;
 
         public const int RENDER_INTENT_Perceptual = 0;
         public const int RENDER_INTENT_Relative_colorimetric = 1;

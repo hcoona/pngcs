@@ -34,7 +34,7 @@ namespace SamplesTests
 
         static string tempDir = "C:/temp";
 
-        public static void testEqual(String image1, String image2)
+        public static void testEqual(string image1, string image2)
         {
             PngReader png1 = FileHelper.CreatePngReader(image1);
             PngHelperInternal.InitCrcForTests(png1);
@@ -68,7 +68,7 @@ namespace SamplesTests
                 fatalError("different crcs", png1);
         }
 
-        public static string getTmpFile(String suffix)
+        public static string getTmpFile(string suffix)
         {
             return tempDir + "/temp" + suffix + ".png";
         }
@@ -76,13 +76,13 @@ namespace SamplesTests
         /**
         * Creates a dummy temp png You should call endFileTmp after adding chunks, etc
         * */
-        public static PngWriter prepareFileTmp(String suffix, ImageInfo imi)
+        public static PngWriter prepareFileTmp(string suffix, ImageInfo imi)
         {
             PngWriter png = FileHelper.CreatePngWriter(getTmpFile(suffix), imi, true);
             return png;
         }
 
-        public static PngWriter prepareFileTmp(String suffix, bool palette)
+        public static PngWriter prepareFileTmp(string suffix, bool palette)
         {
             return prepareFileTmp(suffix, new ImageInfo(32, 32, 8, false, false, palette));
         }
@@ -95,7 +95,7 @@ namespace SamplesTests
             return line;
         }
 
-        public static PngWriter prepareFileTmp(String suffix)
+        public static PngWriter prepareFileTmp(string suffix)
         {
             return prepareFileTmp(suffix, false);
         }
@@ -108,20 +108,20 @@ namespace SamplesTests
             png.End();
         }
 
-        public static PngReader getReaderTmp(String suffix)
+        public static PngReader getReaderTmp(string suffix)
         {
             PngReader p = FileHelper.CreatePngReader(getTmpFile(suffix));
             return p;
         }
 
-        public static string addSuffixToName(string orig, String suffix)
+        public static string addSuffixToName(string orig, string suffix)
         {
             string dest = System.Text.RegularExpressions.Regex.Replace(orig, @"\.png$", "");
             return dest + suffix + ".png";
         }
 
 
-        public static string createWaves(String suffix, double scale, ImageInfo imi)
+        public static string createWaves(string suffix, double scale, ImageInfo imi)
         {
             string f = getTmpFile(suffix);
             // open image for writing to a output stream
@@ -147,7 +147,7 @@ namespace SamplesTests
             return f;
         }
 
-        public static void fatalError(String s, PngReader png1, PngWriter png2)
+        public static void fatalError(string s, PngReader png1, PngWriter png2)
         {
             try
             {
@@ -162,7 +162,7 @@ namespace SamplesTests
 
 
 
-        public static void fatalError(String s, PngReader png1, PngReader png2)
+        public static void fatalError(string s, PngReader png1, PngReader png2)
         {
             try
             {
@@ -174,7 +174,7 @@ namespace SamplesTests
             }
             throw new PngjException(s);
         }
-        public static void fatalError(String s, PngReader png1)
+        public static void fatalError(string s, PngReader png1)
         {
             try
             {

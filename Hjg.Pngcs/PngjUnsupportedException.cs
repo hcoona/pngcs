@@ -40,12 +40,12 @@ namespace Hjg.Pngcs
         {
         }
 
-        public PngjUnsupportedException(String message, Exception cause)
+        public PngjUnsupportedException(string message, Exception cause)
             : base(message, cause)
         {
         }
 
-        public PngjUnsupportedException(String message)
+        public PngjUnsupportedException(string message)
             : base(message)
         {
         }

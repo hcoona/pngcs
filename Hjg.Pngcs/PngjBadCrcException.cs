@@ -35,12 +35,12 @@ namespace Hjg.Pngcs
     {
         private const long serialVersionUID = 1L;
 
-        public PngjBadCrcException(String message, Exception cause)
+        public PngjBadCrcException(string message, Exception cause)
             : base(message, cause)
         {
         }
 
-        public PngjBadCrcException(String message)
+        public PngjBadCrcException(string message)
             : base(message)
         {
         }

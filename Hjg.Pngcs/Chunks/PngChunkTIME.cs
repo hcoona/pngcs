@@ -33,7 +33,7 @@ namespace Hjg.Pngcs.Chunks
     /// </summary>
     public class PngChunkTIME : PngChunkSingle
     {
-        public const String ID = ChunkHelper.tIME;
+        public const string ID = ChunkHelper.tIME;
 
         private int year, mon, day, hour, min, sec;
 
@@ -50,7 +50,7 @@ namespace Hjg.Pngcs.Chunks
         public override ChunkRaw CreateRawChunk()
         {
             ChunkRaw c = createEmptyChunk(7, true);
-            Hjg.Pngcs.PngHelperInternal.WriteInt2tobytes(year, c.Data, 0);
+            PngHelperInternal.WriteInt2tobytes(year, c.Data, 0);
             c.Data[2] = (byte)mon;
             c.Data[3] = (byte)day;
             c.Data[4] = (byte)hour;
@@ -63,12 +63,12 @@ namespace Hjg.Pngcs.Chunks
         {
             if (chunk.Len != 7)
                 throw new PngjException("bad chunk " + chunk);
-            year = Hjg.Pngcs.PngHelperInternal.ReadInt2fromBytes(chunk.Data, 0);
-            mon = Hjg.Pngcs.PngHelperInternal.ReadInt1fromByte(chunk.Data, 2);
-            day = Hjg.Pngcs.PngHelperInternal.ReadInt1fromByte(chunk.Data, 3);
-            hour = Hjg.Pngcs.PngHelperInternal.ReadInt1fromByte(chunk.Data, 4);
-            min = Hjg.Pngcs.PngHelperInternal.ReadInt1fromByte(chunk.Data, 5);
-            sec = Hjg.Pngcs.PngHelperInternal.ReadInt1fromByte(chunk.Data, 6);
+            year = PngHelperInternal.ReadInt2fromBytes(chunk.Data, 0);
+            mon = PngHelperInternal.ReadInt1fromByte(chunk.Data, 2);
+            day = PngHelperInternal.ReadInt1fromByte(chunk.Data, 3);
+            hour = PngHelperInternal.ReadInt1fromByte(chunk.Data, 4);
+            min = PngHelperInternal.ReadInt1fromByte(chunk.Data, 5);
+            sec = PngHelperInternal.ReadInt1fromByte(chunk.Data, 6);
         }
 
         public override void CloneDataFromRead(PngChunk other)
@@ -109,9 +109,9 @@ namespace Hjg.Pngcs.Chunks
         }
 
         /** format YYYY/MM/DD HH:mm:SS */
-        public String GetAsString()
+        public string GetAsString()
         {
-            return String.Format("%04d/%02d/%02d %02d:%02d:%02d", year, mon, day, hour, min, sec);
+            return string.Format("%04d/%02d/%02d %02d:%02d:%02d", year, mon, day, hour, min, sec);
         }
 
     }

@@ -24,8 +24,6 @@
 
 namespace Hjg.Pngcs.Chunks
 {
-
-    using System;
     using Hjg.Pngcs;
 
     /// <summary>
@@ -35,7 +33,7 @@ namespace Hjg.Pngcs.Chunks
     /// </summary>
     public class PngChunkSBIT : PngChunkSingle
     {
-        public const String ID = ChunkHelper.sBIT;
+        public const string ID = ChunkHelper.sBIT;
 
         //	significant bits
         public int Graysb { get; set; }

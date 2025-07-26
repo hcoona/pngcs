@@ -22,28 +22,26 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-using System;
-
 namespace Hjg.Pngcs.Zlib
 {
 
     public class CRC32
     { // based on http://damieng.com/blog/2006/08/08/calculating_crc32_in_c_and_net
 
-        private const UInt32 defaultPolynomial = 0xedb88320;
-        private const UInt32 defaultSeed = 0xffffffff;
-        private static UInt32[] defaultTable;
+        private const uint defaultPolynomial = 0xedb88320;
+        private const uint defaultSeed = 0xffffffff;
+        private static uint[] defaultTable;
 
-        private UInt32 hash;
-        private UInt32 seed;
-        private UInt32[] table;
+        private uint hash;
+        private uint seed;
+        private uint[] table;
 
         public CRC32()
             : this(defaultPolynomial, defaultSeed)
         {
         }
 
-        public CRC32(UInt32 polynomial, UInt32 seed)
+        public CRC32(uint polynomial, uint seed)
         {
             table = InitializeTable(polynomial);
             this.seed = seed;
@@ -66,7 +64,7 @@ namespace Hjg.Pngcs.Zlib
             }
         }
 
-        public UInt32 GetValue()
+        public uint GetValue()
         {
             return ~hash;
         }
@@ -76,14 +74,14 @@ namespace Hjg.Pngcs.Zlib
             this.hash = seed;
         }
 
-        private static UInt32[] InitializeTable(UInt32 polynomial)
+        private static uint[] InitializeTable(uint polynomial)
         {
             if (polynomial == defaultPolynomial && defaultTable != null)
                 return defaultTable;
-            UInt32[] createTable = new UInt32[256];
+            uint[] createTable = new uint[256];
             for (int i = 0; i < 256; i++)
             {
-                UInt32 entry = (UInt32)i;
+                uint entry = (uint)i;
                 for (int j = 0; j < 8; j++)
                     if ((entry & 1) == 1)
                         entry = (entry >> 1) ^ polynomial;

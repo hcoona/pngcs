@@ -24,8 +24,6 @@
 
 namespace Hjg.Pngcs.Chunks
 {
-
-    using System;
     using System.IO;
     using Hjg.Pngcs;
     using Hjg.Pngcs.Zlib;
@@ -52,7 +50,7 @@ namespace Hjg.Pngcs.Chunks
         /// Chunk Id, as array of 4 bytes
         /// </summary>
         public readonly byte[] IdBytes;
-        public readonly String Id;
+        public readonly string Id;
         /// <summary>
         /// Raw data, crc not included
         /// </summary>
@@ -62,7 +60,7 @@ namespace Hjg.Pngcs.Chunks
         /// <summary>
         /// Creates an empty raw chunk
         /// </summary>
-        internal ChunkRaw(int length, String idb, bool alloc)
+        internal ChunkRaw(int length, string idb, bool alloc)
         {
             this.Id = idb;
             this.IdBytes = ChunkHelper.ToBytes(Id);
@@ -82,7 +80,7 @@ namespace Hjg.Pngcs.Chunks
         /// </summary>
         private int ComputeCrc()
         {
-            CRC32 crcengine = Hjg.Pngcs.PngHelperInternal.GetCRC();
+            CRC32 crcengine = PngHelperInternal.GetCRC();
             crcengine.Reset();
             crcengine.Update(IdBytes, 0, 4);
             if (Len > 0)
@@ -94,14 +92,14 @@ namespace Hjg.Pngcs.Chunks
         internal void WriteChunk(Stream os)
         {
             if (IdBytes.Length != 4)
-                throw new PngjOutputException("bad chunkid [" + Hjg.Pngcs.Chunks.ChunkHelper.ToString(IdBytes) + "]");
+                throw new PngjOutputException("bad chunkid [" + ChunkHelper.ToString(IdBytes) + "]");
             crcval = ComputeCrc();
-            Hjg.Pngcs.PngHelperInternal.WriteInt4(os, Len);
-            Hjg.Pngcs.PngHelperInternal.WriteBytes(os, IdBytes);
+            PngHelperInternal.WriteInt4(os, Len);
+            PngHelperInternal.WriteBytes(os, IdBytes);
             if (Len > 0)
-                Hjg.Pngcs.PngHelperInternal.WriteBytes(os, Data, 0, Len);
+                PngHelperInternal.WriteBytes(os, Data, 0, Len);
             //Console.WriteLine("writing chunk " + this.ToString() + "crc=" + crcval);
-            Hjg.Pngcs.PngHelperInternal.WriteInt4(os, crcval);
+            PngHelperInternal.WriteInt4(os, crcval);
         }
 
         /// <summary>
@@ -111,8 +109,8 @@ namespace Hjg.Pngcs.Chunks
         ///
         internal int ReadChunkData(Stream stream, bool checkCrc)
         {
-            Hjg.Pngcs.PngHelperInternal.ReadBytes(stream, Data, 0, Len);
-            crcval = Hjg.Pngcs.PngHelperInternal.ReadInt4(stream);
+            PngHelperInternal.ReadBytes(stream, Data, 0, Len);
+            crcval = PngHelperInternal.ReadInt4(stream);
             if (checkCrc)
             {
                 int crc = ComputeCrc();
@@ -137,9 +135,9 @@ namespace Hjg.Pngcs.Chunks
         /// Just id and length
         /// </summary>
         /// <returns></returns>
-        public override String ToString()
+        public override string ToString()
         {
-            return "chunkid=" + Hjg.Pngcs.Chunks.ChunkHelper.ToString(IdBytes) + " len=" + Len;
+            return "chunkid=" + ChunkHelper.ToString(IdBytes) + " len=" + Len;
         }
     }
 }

@@ -299,7 +299,7 @@ namespace Hjg.Pngcs
         /// <param name="b"></param>
         internal void SetScanLine(int[] b)
         { // makes copy
-            System.Array.Copy((Array)(b), 0, (Array)(Scanline), 0, Scanline.Length);
+            Array.Copy((Array)(b), 0, (Array)(Scanline), 0, Scanline.Length);
         }
 
         /// <summary>
@@ -311,7 +311,7 @@ namespace Hjg.Pngcs
         {
             if (b == null || b.Length < Scanline.Length)
                 b = new int[Scanline.Length];
-            System.Array.Copy((Array)(Scanline), 0, (Array)(b), 0, Scanline.Length);
+            Array.Copy((Array)(Scanline), 0, (Array)(b), 0, Scanline.Length);
             return b;
         }
 
@@ -356,7 +356,7 @@ namespace Hjg.Pngcs
         }
 
 
-        public override String ToString()
+        public override string ToString()
         {
             return "row=" + Rown + " cols=" + ImgInfo.Cols + " bpc=" + ImgInfo.BitDepth
                     + " size=" + Scanline.Length;

@@ -35,7 +35,7 @@ namespace Hjg.Pngcs.Chunks
     /// </summary>
     public class PngChunkHIST : PngChunkSingle
     {
-        public readonly static String ID = ChunkHelper.hIST;
+        public readonly static string ID = ChunkHelper.hIST;
 
         private int[] hist = new int[0]; // should have same lenght as palette
 
@@ -77,7 +77,7 @@ namespace Hjg.Pngcs.Chunks
         {
             PngChunkHIST otherx = (PngChunkHIST)other;
             hist = new int[otherx.hist.Length];
-            System.Array.Copy((Array)(otherx.hist), 0, (Array)(this.hist), 0, otherx.hist.Length);
+            Array.Copy((Array)(otherx.hist), 0, (Array)(this.hist), 0, otherx.hist.Length);
         }
 
         public int[] GetHist()

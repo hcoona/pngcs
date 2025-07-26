@@ -22,8 +22,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-using System;
-
 namespace Hjg.Pngcs.Chunks
 {
     /// <summary>
@@ -32,7 +30,7 @@ namespace Hjg.Pngcs.Chunks
     internal class ChunkPredicateId : ChunkPredicate
     {
         private readonly string id;
-        public ChunkPredicateId(String id)
+        public ChunkPredicateId(string id)
         {
             this.id = id;
         }

@@ -24,8 +24,6 @@
 
 namespace Hjg.Pngcs.Chunks
 {
-
-    using System;
     using Hjg.Pngcs;
     /// <summary>
     /// IDAT chunk http://www.w3.org/TR/PNG/#11IDAT
@@ -34,7 +32,7 @@ namespace Hjg.Pngcs.Chunks
     /// </summary>
     public class PngChunkIDAT : PngChunkMultiple
     {
-        public const String ID = ChunkHelper.IDAT;
+        public const string ID = ChunkHelper.IDAT;
 
         public PngChunkIDAT(ImageInfo i, int len, long offset)
             : base(ID, i)

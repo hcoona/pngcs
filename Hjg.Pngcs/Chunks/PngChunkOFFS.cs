@@ -24,8 +24,6 @@
 
 namespace Hjg.Pngcs.Chunks
 {
-
-    using System;
     using Hjg.Pngcs;
 
     /// <summary>
@@ -33,7 +31,7 @@ namespace Hjg.Pngcs.Chunks
     /// </summary>
     public class PngChunkOFFS : PngChunkSingle
     {
-        public const String ID = "oFFs";
+        public const string ID = "oFFs";
 
         private long posX;
         private long posY;

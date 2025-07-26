@@ -91,7 +91,7 @@ namespace Hjg.Pngcs
                 count = bytesleft;
                 Position = count;
                 if (bytesleft > 0)
-                    System.Array.Copy((Array)(buf), nb, (Array)(buf), 0, bytesleft);
+                    Array.Copy((Array)(buf), nb, (Array)(buf), 0, bytesleft);
             }
         }
 

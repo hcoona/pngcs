@@ -32,7 +32,7 @@ namespace SamplesTests
     class SampleConvertToTrueCol
     {
 
-        public static void doit(String orig)
+        public static void doit(string orig)
         {
             string copy = TestsHelper.addSuffixToName(orig, "_tc");
 

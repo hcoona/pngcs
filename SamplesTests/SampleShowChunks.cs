@@ -34,7 +34,7 @@ namespace SamplesTests
     public class SampleShowChunks
     {
 
-        public static void showChunks(String file)
+        public static void showChunks(string file)
         {
             PngReader pngr = FileHelper.CreatePngReader(file);
             pngr.MaxTotalBytesRead = 1024 * 1024 * 1024L * 3; // 3Gb!

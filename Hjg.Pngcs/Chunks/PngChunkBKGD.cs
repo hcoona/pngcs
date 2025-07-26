@@ -24,8 +24,6 @@
 
 namespace Hjg.Pngcs.Chunks
 {
-
-    using System;
     using Hjg.Pngcs;
 
     /// <summary>
@@ -33,7 +31,7 @@ namespace Hjg.Pngcs.Chunks
     /// </summary>
     public class PngChunkBKGD : PngChunkSingle
     {
-        public const String ID = ChunkHelper.bKGD;
+        public const string ID = ChunkHelper.bKGD;
 
         // this chunk structure depends on the image type
         // only one of these is meaningful
@@ -56,7 +54,7 @@ namespace Hjg.Pngcs.Chunks
             if (ImgInfo.Greyscale)
             {
                 c = createEmptyChunk(2, true);
-                Hjg.Pngcs.PngHelperInternal.WriteInt2tobytes(gray, c.Data, 0);
+                PngHelperInternal.WriteInt2tobytes(gray, c.Data, 0);
             }
             else if (ImgInfo.Indexed)
             {
@@ -67,8 +65,8 @@ namespace Hjg.Pngcs.Chunks
             {
                 c = createEmptyChunk(6, true);
                 PngHelperInternal.WriteInt2tobytes(red, c.Data, 0);
-                Hjg.Pngcs.PngHelperInternal.WriteInt2tobytes(green, c.Data, 0);
-                Hjg.Pngcs.PngHelperInternal.WriteInt2tobytes(blue, c.Data, 0);
+                PngHelperInternal.WriteInt2tobytes(green, c.Data, 0);
+                PngHelperInternal.WriteInt2tobytes(blue, c.Data, 0);
             }
             return c;
         }
@@ -77,7 +75,7 @@ namespace Hjg.Pngcs.Chunks
         {
             if (ImgInfo.Greyscale)
             {
-                gray = Hjg.Pngcs.PngHelperInternal.ReadInt2fromBytes(c.Data, 0);
+                gray = PngHelperInternal.ReadInt2fromBytes(c.Data, 0);
             }
             else if (ImgInfo.Indexed)
             {
@@ -85,9 +83,9 @@ namespace Hjg.Pngcs.Chunks
             }
             else
             {
-                red = Hjg.Pngcs.PngHelperInternal.ReadInt2fromBytes(c.Data, 0);
-                green = Hjg.Pngcs.PngHelperInternal.ReadInt2fromBytes(c.Data, 2);
-                blue = Hjg.Pngcs.PngHelperInternal.ReadInt2fromBytes(c.Data, 4);
+                red = PngHelperInternal.ReadInt2fromBytes(c.Data, 0);
+                green = PngHelperInternal.ReadInt2fromBytes(c.Data, 2);
+                blue = PngHelperInternal.ReadInt2fromBytes(c.Data, 4);
             }
         }
 
