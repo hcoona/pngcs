@@ -111,7 +111,10 @@ namespace Hjg.Pngcs.Chunks
         /** format YYYY/MM/DD HH:mm:SS */
         public string GetAsString()
         {
-            return string.Format("%04d/%02d/%02d %02d:%02d:%02d", year, mon, day, hour, min, sec);
+            return string.Format(
+                System.Globalization.CultureInfo.InvariantCulture,
+                "{0:D4}/{1:D2}/{2:D2} {3:D2}:{4:D2}:{5:D2}",
+                year, mon, day, hour, min, sec);
         }
 
     }
