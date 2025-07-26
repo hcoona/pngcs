@@ -65,7 +65,7 @@ namespace Hjg.Pngcs.Chunks
             Dictionary<string, int> ck = new Dictionary<string, int>();
             foreach (PngChunk c in chunks)
             {
-                ck[c.Id] = ck.ContainsKey(c.Id) ? ck[c.Id] + 1 : 1;
+                ck[c.Id] = ck.TryGetValue(c.Id, out int value) ? value + 1 : 1;
             }
             return ck;
         }

@@ -181,7 +181,7 @@ namespace Hjg.Pngcs.Chunks
                     throw new PngjOutputException("duplicated chunk does not allow multiple: " + c);
                 c.write(os);
                 chunks.Add(c);
-                alreadyWrittenKeys[c.Id] = alreadyWrittenKeys.ContainsKey(c.Id) ? alreadyWrittenKeys[c.Id] + 1 : 1;
+                alreadyWrittenKeys[c.Id] = alreadyWrittenKeys.TryGetValue(c.Id, out int value) ? value + 1 : 1;
                 written.Add(i);
                 c.ChunkGroup = currentGroup;
             }
