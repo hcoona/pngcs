@@ -38,7 +38,7 @@ namespace Hjg.Pngcs
     {
 
         [ThreadStatic]
-        private static CRC32 crc32Engine = null;
+        private static CRC32 crc32Engine;
 
         /// <summary>
         /// thread-singleton crc engine
