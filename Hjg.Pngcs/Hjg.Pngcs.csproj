@@ -36,11 +36,11 @@
 
   <ItemGroup>
     <None Include="../README.md" Pack="true" PackagePath="\" />
-    <None Include="../changes.txt" />
+    <None Include="../ChangeLog.md" />
   </ItemGroup>
 
   <Target Name="SetPackageReleaseNotes" BeforeTargets="GenerateNuspec">
-    <ReadLinesFromFile File="$(MSBuildProjectDirectory)/../changes.txt">
+    <ReadLinesFromFile File="$(MSBuildProjectDirectory)/../ChangeLog.md">
       <Output TaskParameter="Lines" ItemName="ReleaseNotesLines" />
     </ReadLinesFromFile>
     <PropertyGroup>
