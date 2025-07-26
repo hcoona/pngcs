@@ -567,7 +567,7 @@ namespace Hjg.Pngcs
                 WriteLastChunks();
                 WriteEndChunk();
                 if (this.ShouldCloseStream)
-                    outputStream.Close();
+                    outputStream.Dispose();
             }
             catch (IOException e)
             {
