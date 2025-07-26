@@ -34,12 +34,12 @@ namespace SamplesTests
             cont++;
         }
 
-        public override void Write(byte[] b, int off, int len)
+        public override void Write(byte[] buffer, int offset, int count)
         {
-            cont += len;
+            cont += count;
         }
 
-        public override void WriteByte(byte b)
+        public override void WriteByte(byte value)
         {
             cont++;
         }

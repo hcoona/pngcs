@@ -71,13 +71,13 @@ namespace Hjg.Pngcs.Chunks
             return c;
         }
 
-        public override void ParseFromRaw(ChunkRaw chunk)
+        public override void ParseFromRaw(ChunkRaw c)
         {
-            SetNentries(chunk.Len / 3);
+            SetNentries(c.Len / 3);
             for (int n = 0, i = 0; n < nentries; n++)
             {
-                SetEntry(n, (int)(chunk.Data[i++] & 0xff), (int)(chunk.Data[i++] & 0xff),
-                        (int)(chunk.Data[i++] & 0xff));
+                SetEntry(n, (int)(c.Data[i++] & 0xff), (int)(c.Data[i++] & 0xff),
+                        (int)(c.Data[i++] & 0xff));
             }
         }
 

@@ -59,16 +59,16 @@ namespace Hjg.Pngcs.Chunks
             return c;
         }
 
-        public override void ParseFromRaw(ChunkRaw chunk)
+        public override void ParseFromRaw(ChunkRaw c)
         {
-            if (chunk.Len != 7)
-                throw new PngjException("bad chunk " + chunk);
-            year = PngHelperInternal.ReadInt2fromBytes(chunk.Data, 0);
-            mon = PngHelperInternal.ReadInt1fromByte(chunk.Data, 2);
-            day = PngHelperInternal.ReadInt1fromByte(chunk.Data, 3);
-            hour = PngHelperInternal.ReadInt1fromByte(chunk.Data, 4);
-            min = PngHelperInternal.ReadInt1fromByte(chunk.Data, 5);
-            sec = PngHelperInternal.ReadInt1fromByte(chunk.Data, 6);
+            if (c.Len != 7)
+                throw new PngjException("bad chunk " + c);
+            year = PngHelperInternal.ReadInt2fromBytes(c.Data, 0);
+            mon = PngHelperInternal.ReadInt1fromByte(c.Data, 2);
+            day = PngHelperInternal.ReadInt1fromByte(c.Data, 3);
+            hour = PngHelperInternal.ReadInt1fromByte(c.Data, 4);
+            min = PngHelperInternal.ReadInt1fromByte(c.Data, 5);
+            sec = PngHelperInternal.ReadInt1fromByte(c.Data, 6);
         }
 
         public override void CloneDataFromRead(PngChunk other)

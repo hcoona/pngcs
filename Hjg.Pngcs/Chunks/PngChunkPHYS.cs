@@ -66,17 +66,17 @@ namespace Hjg.Pngcs.Chunks
             this.Units = otherx.Units;
         }
 
-        public override void ParseFromRaw(ChunkRaw chunk)
+        public override void ParseFromRaw(ChunkRaw c)
         {
-            if (chunk.Len != 9)
-                throw new PngjException("bad chunk length " + chunk);
-            PixelsxUnitX = PngHelperInternal.ReadInt4fromBytes(chunk.Data, 0);
+            if (c.Len != 9)
+                throw new PngjException("bad chunk length " + c);
+            PixelsxUnitX = PngHelperInternal.ReadInt4fromBytes(c.Data, 0);
             if (PixelsxUnitX < 0)
                 PixelsxUnitX += 0x100000000L;
-            PixelsxUnitY = PngHelperInternal.ReadInt4fromBytes(chunk.Data, 4);
+            PixelsxUnitY = PngHelperInternal.ReadInt4fromBytes(c.Data, 4);
             if (PixelsxUnitY < 0)
                 PixelsxUnitY += 0x100000000L;
-            Units = PngHelperInternal.ReadInt1fromByte(chunk.Data, 8);
+            Units = PngHelperInternal.ReadInt1fromByte(c.Data, 8);
         }
 
         /// <summary>
