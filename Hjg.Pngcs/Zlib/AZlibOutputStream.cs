@@ -23,6 +23,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 namespace Hjg.Pngcs.Zlib
@@ -30,8 +31,16 @@ namespace Hjg.Pngcs.Zlib
 
     public abstract class AZlibOutputStream : Stream
     {
-        readonly protected Stream rawStream;
-        readonly protected bool leaveOpen;
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
+        protected readonly Stream rawStream;
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
+        protected readonly bool leaveOpen;
         protected int compressLevel;
         protected EDeflateCompressStrategy strategy;
 

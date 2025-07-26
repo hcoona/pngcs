@@ -27,6 +27,7 @@ namespace Hjg.Pngcs
 
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using Hjg.Pngcs.Chunks;
     using Hjg.Pngcs.Zlib;
@@ -66,6 +67,10 @@ namespace Hjg.Pngcs
         /// <summary>
         /// filename, or description - merely informative, can be empty
         /// </summary>
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         protected readonly string filename;
 
         /// <summary>
@@ -142,6 +147,10 @@ namespace Hjg.Pngcs
 
 
         // only set for interlaced PNG
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         public readonly bool interlaced;
         private readonly PngDeinterlacer deinterlacer;
 

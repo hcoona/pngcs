@@ -24,6 +24,7 @@
 
 namespace Hjg.Pngcs.Chunks
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using Hjg.Pngcs;
     using Hjg.Pngcs.Zlib;
@@ -45,11 +46,23 @@ namespace Hjg.Pngcs.Chunks
         /// The length counts only the data field, not itself, the chunk type code, or the CRC. Zero is a valid length.
         /// Although encoders and decoders should treat the length as unsigned, its value must not exceed 2^31-1 bytes.
         /// </summary>
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         public readonly int Len;
         /// <summary>
         /// Chunk Id, as array of 4 bytes
         /// </summary>
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         public readonly byte[] IdBytes;
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         public readonly string Id;
         /// <summary>
         /// Raw data, crc not included

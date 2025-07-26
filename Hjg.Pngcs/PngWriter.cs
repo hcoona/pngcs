@@ -25,6 +25,7 @@
 namespace Hjg.Pngcs
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using Chunks;
     using Hjg.Pngcs.Zlib;
@@ -37,11 +38,19 @@ namespace Hjg.Pngcs
         /// <summary>
         /// Basic image info, inmutable
         /// </summary>
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         public readonly ImageInfo ImgInfo;
 
         /// <summary>
         /// filename, or description - merely informative, can be empty
         /// </summary>
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         protected readonly string filename;
 
         private FilterWriteStrategy filterStrat;

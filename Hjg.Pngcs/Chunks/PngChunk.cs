@@ -49,10 +49,18 @@ namespace Hjg.Pngcs.Chunks
         /// <summary>
         /// 4 letters. The Id almost determines the concrete type (except for PngUKNOWN)
         /// </summary>
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         public readonly string Id;
         /// <summary>
         /// Standard basic properties, implicit in the Id
         /// </summary>
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         public readonly bool Crit, Pub, Safe;
 
         /// <summary>

@@ -24,6 +24,7 @@
 
 namespace Hjg.Pngcs.Chunks
 {
+    using System.Diagnostics.CodeAnalysis;
     using Hjg.Pngcs;
     /// <summary>
     /// general class for textual chunks
@@ -53,6 +54,10 @@ namespace Hjg.Pngcs.Chunks
         public const string KEY_Comment = "Comment"; // Miscellaneous comment
 #pragma warning restore CA1707
 
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow data class.")]
         public class PngTxtInfo
         {
             public string title;

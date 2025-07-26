@@ -22,6 +22,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Hjg.Pngcs
 {
     /// <summary>
@@ -39,11 +41,19 @@ namespace Hjg.Pngcs
         /// <summary>
         /// Image width, in pixels
         /// </summary>
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         public readonly int Cols;
 
         /// <summary>
         /// Image height, in pixels
         /// </summary>
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         public readonly int Rows;
 
         /// <summary>
@@ -54,6 +64,10 @@ namespace Hjg.Pngcs
         /// For grayscale, it's 8 (or 1 2 4 ).
         /// For indexed images, number of bits per palette index (1 2 4 8).
         ///</remarks>
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         public readonly int BitDepth;
 
         /// <summary>
@@ -62,6 +76,10 @@ namespace Hjg.Pngcs
         /// <remarks>
         /// WARNING: This is 3-4 for rgb/rgba, but 1 for palette/gray !
         ///</remarks>
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         public readonly int Channels;
 
         /// <summary>
@@ -69,18 +87,30 @@ namespace Hjg.Pngcs
         /// </summary>
         /// <remarks>equals <c>channels * bitDepth</c>
         /// </remarks>
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         public readonly int BitspPixel;
 
         /// <summary>
         /// Bytes per pixel, rounded up
         /// </summary>
         /// <remarks>This is mainly for internal use (filter)</remarks>
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         public readonly int BytesPixel;
 
         /// <summary>
         /// Bytes per row, rounded up
         /// </summary>
         /// <remarks>equals <c>ceil(bitspp*cols/8)</c></remarks>
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         public readonly int BytesPerRow;
 
         /// <summary>
@@ -89,6 +119,10 @@ namespace Hjg.Pngcs
         /// <remarks>
         /// Equals <c>cols * channels</c>
         /// </remarks>
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         public readonly int SamplesPerRow;
 
         /// <summary>
@@ -98,22 +132,42 @@ namespace Hjg.Pngcs
         /// Equals samplesPerRow if not packed. Elsewhere, it's lower
         /// For internal use, mostly.
         /// </remarks>
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         public readonly int SamplesPerRowPacked;
         /// <summary>
         /// flag: has alpha channel
         /// </summary>
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         public readonly bool Alpha;
         /// <summary>
         /// flag: is grayscale (G/GA)
         /// </summary>
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         public readonly bool Greyscale;
         /// <summary>
         /// flag: has palette
         /// </summary>
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         public readonly bool Indexed;
         /// <summary>
         /// flag: less than one byte per sample (bit depth 1-2-4)
         /// </summary>
+        [SuppressMessage(
+            "Design",
+            "CA1051:Do not declare visible instance fields",
+            Justification = "Allow public readonly fields.")]
         public readonly bool Packed;
 
 
