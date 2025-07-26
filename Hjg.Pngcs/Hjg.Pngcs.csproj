@@ -13,6 +13,9 @@
     <PackageValidationBaselineName>Hjg.Pngcs</PackageValidationBaselineName>
     <PackageValidationBaselineVersion>1.1.4</PackageValidationBaselineVersion>
 
+    <!-- TODO(shuaizhang): Enable Recommended Code Analysis -->
+    <!--<AnalysisMode>Recommended</AnalysisMode>-->
+
     <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
 
