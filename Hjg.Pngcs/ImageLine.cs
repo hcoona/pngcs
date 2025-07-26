@@ -26,6 +26,7 @@ namespace Hjg.Pngcs
 {
 
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
 
     /// <summary>
@@ -82,6 +83,10 @@ namespace Hjg.Pngcs
         /// </summary>
         public int maxSampleVal { get; private set; }
 
+        [SuppressMessage(
+            "Naming",
+            "CA1720:Identifier contains type name",
+            Justification = "Align with the specification.")]
         public enum ESampleType
         {
             INT, // 4 bytes per sample
