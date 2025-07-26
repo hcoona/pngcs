@@ -71,9 +71,9 @@ namespace Hjg.Pngcs.Chunks
         }
 
         /* does not copy! */
-        public void SetData(byte[] data_0)
+        public void SetData(byte[] data0)
         {
-            this.data = data_0;
+            this.data = data0;
         }
 
         public override void CloneDataFromRead(PngChunk other)

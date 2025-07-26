@@ -522,14 +522,14 @@ namespace Hjg.Pngcs
             }
         }
 
-        public void CopyChunksFirst(PngReader reader, int copy_mask)
+        public void CopyChunksFirst(PngReader reader, int copyMask)
         {
-            CopyChunks(reader, copy_mask, false);
+            CopyChunks(reader, copyMask, false);
         }
 
-        public void CopyChunksLast(PngReader reader, int copy_mask)
+        public void CopyChunksLast(PngReader reader, int copyMask)
         {
-            CopyChunks(reader, copy_mask, true);
+            CopyChunks(reader, copyMask, true);
         }
 
         /// <summary>
