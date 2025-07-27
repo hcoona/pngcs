@@ -7,13 +7,13 @@ A C# port of the PNG Java library.
 
 Change logs for <https://github.com/hcoona/pngcs>.
 
-### Version 1.2.0-beta (July 25, 2025)
+### Version 1.2.1 (July 27, 2025)
 
 - **Modern .NET support**: Multi-targeting for `netstandard2.0`, `netstandard2.1`, `net8.0`, and `net9.0`
 - **Native AOT compatibility**: Full support for Native Ahead-of-Time compilation
 - **NuGet package availability**: Official NuGet package with assembly name `Hjg.Pngcs`
 - **Enhanced compression support**: Improved ZLib stream implementation
-  - Native `ZLibStream` support for .NET 6.0+ targets
+  - Native `ZLibStream` support for .NET 8.0+ targets
   - Unified compression stream architecture
 - **Performance improvements**:
   - Enhanced string operations with ordinal comparison
