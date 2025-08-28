@@ -2,6 +2,8 @@
 
 A small library to read/write huge PNG files in C#.
 
+This project has been moved to [OneDotNet](https://dev.azure.com/zhangshuai89/Public/_git/OneDotNet?path=%2Fsrcs%2Fpublic%2Flib%2FPngcs&version=GTrelease%2FHjg.Pngcs%2Fv1.3.1&_a=contents). But you can still file me issues in this repository.
+
 ## Overview
 
 PngCs is a C# library to read/write PNG images.
@@ -53,9 +55,12 @@ See `ChangeLog.md`
 
 This project is licensed under the GNU General Public License v3.0 or later (GPL v3+). See `LICENSE.GPL.txt` for details.
 
+The NuGet package is distributed under the terms of LGPL-3.0-or-later WITH LGPL-3.0-linking-exception. See [LICENSE.LGPLv3-linking-exception.txt](https://dev.azure.com/zhangshuai89/Public/_git/OneDotNet?path=/LICENSE.LGPLv3-linking-exception.txt) for details.
+
 Portions of the code are derived from an open source project originally licensed under the Apache License, Version 2.0 by Hernán J. González. The original copyright and license notice are preserved in accordance with the Apache License.
 
 For more information, see the files:
 
 - `LICENSE.GPL.txt` (GPL v3+)
+- `LICENSE.LGPLv3-linking-exception.txt` (LGPL v3.0 with linking exception)
 - `LICENSE.APACHE.txt` (Apache 2.0)

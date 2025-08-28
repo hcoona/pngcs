@@ -1,5 +1,12 @@
+Exception:
+
+The library built from sources under srcs/public/lib is licensed under the
+GNU Lesser General Public License, version 3 or any later version
+(LGPL-3.0-or-later), with an additional linking exception. See
+LICENSE.LGPLv3-linking-exception.txt for details.
+
                     GNU GENERAL PUBLIC LICENSE
-                        Version 3, 29 June 2007
+                      Version 3, 29 June 2007
 
  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
  Everyone is permitted to copy and distribute verbatim copies
@@ -68,7 +75,7 @@ patents cannot be used to render the program non-free.
   The precise terms and conditions for copying, distribution and
 modification follow.
 
-                        TERMS AND CONDITIONS
+                      TERMS AND CONDITIONS
 
   0. Definitions.
 

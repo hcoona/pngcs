@@ -18,6 +18,13 @@ As required by the Apache License, the original copyright notice is retained
 below. See LICENSE.APACHE.txt for the full text of the Apache License,
 Version 2.0.
 
+Exception:
+
+The library built from sources is licensed under the
+GNU Lesser General Public License, version 3 or any later version
+(LGPL-3.0-or-later), with an additional linking exception. See
+LICENSE.LGPLv3-linking-exception.txt for details.
+
 ## Original Copyright Notice
 
 Copyright 2012    Hernán J. González    hgonzalez@gmail.com
