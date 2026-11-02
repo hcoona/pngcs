@@ -1,66 +1,15 @@
-# PNGCS
+# pngcs
 
-A small library to read/write huge PNG files in C#.
+This fork is archived. Development continues in the
+[hcoona/three](https://github.com/hcoona/three) monorepo. Before that, the code lived in the Azure DevOps
+[OneDotNet](https://dev.azure.com/zhangshuai89/Public/_git/OneDotNet) repository.
 
-This project has been moved to [OneDotNet](https://dev.azure.com/zhangshuai89/Public/_git/OneDotNet?path=%2Fsrcs%2Fpublic%2Flib%2FPngcs&version=GTrelease%2FHjg.Pngcs%2Fv1.3.1&_a=contents). But you can still file me issues in this repository.
+- **Current source:** [`src/public/lib/Hjg.Pngcs`](https://github.com/hcoona/three/tree/main/src/public/lib/Hjg.Pngcs)
+- **Migration snapshot:** [`OneDotNet/srcs/public/lib/Hjg.Pngcs/` at hcoona/three@416b473](https://github.com/hcoona/three/tree/416b473eac4ea9360f1310b3e8e12f6e61989342/OneDotNet/srcs/public/lib/Hjg.Pngcs),
+  imported from Azure DevOps OneDotNet commit
+  [`17f2224`](https://dev.azure.com/zhangshuai89/Public/_git/OneDotNet/commit/17f2224ab5f25c2149f7d5e9fd184c632afa0c3a)
 
-## Overview
-
-PngCs is a C# library to read/write PNG images.
-
-It provides a simple API for progressive (sequential line-oriented) reading and writing. It's specially suitable for huge images, which one does not want to load fully in memory.
-
-## Installation
-
-Install the NuGet package:
-
-```powershell
-dotnet add package IO.Github.Hcoona.Pngcs
-```
-
-Or via Package Manager Console:
-
-```powershell
-Install-Package IO.Github.Hcoona.Pngcs
-```
-
-## Features
-
-- **Modern .NET support**: Multi-targeting for `netstandard2.0`, `netstandard2.1`, `net8.0`, and `net9.0`
-- **Native AOT compatibility**: Full support for Native Ahead-of-Time compilation
-- Supports all PNG spec color models and bitdepths:
-  - RGB8/RGB16/RGBA8/RGBA16
-  - G8/4/2/1
-  - GA8/4/2/1
-  - PAL8/4/2/1
-- All filters/compression settings
-- Support for Chunks (metadata)
-- **API Compatibility**: API aligned with `Hjg.Pngcs` v1.1.4. See `CompatibilitySuppressions.xml` for details.
-- **Note**: Does not support interlaced images
-
-## Origin
-
-This is a port of the [PngJ library (Java)](http://code.google.com/p/pngj/). The API, documentation and samples from PNGJ apply also to this PngCs library: <http://code.google.com/p/pngj/wiki/Overview>
-
-## History
-
-See `ChangeLog.md`
-
-## Authors
-
-1. Hernan J Gonzalez - <hgonzalez@gmail.com> - [Stack Overflow Profile](http://stackoverflow.com/users/277304/leonbloy) - The original author.
-2. Shuai Zhang - <zhangshuai.ustc@gmail.com> - Current maintainer.
-
-## License
-
-This project is licensed under the GNU General Public License v3.0 or later (GPL v3+). See `LICENSE.GPL.txt` for details.
-
-The NuGet package is distributed under the terms of LGPL-3.0-or-later WITH LGPL-3.0-linking-exception. See [LICENSE.LGPLv3-linking-exception.txt](https://dev.azure.com/zhangshuai89/Public/_git/OneDotNet?path=/LICENSE.LGPLv3-linking-exception.txt) for details.
-
-Portions of the code are derived from an open source project originally licensed under the Apache License, Version 2.0 by Hernán J. González. The original copyright and license notice are preserved in accordance with the Apache License.
-
-For more information, see the files:
-
-- `LICENSE.GPL.txt` (GPL v3+)
-- `LICENSE.LGPLv3-linking-exception.txt` (LGPL v3.0 with linking exception)
-- `LICENSE.APACHE.txt` (Apache 2.0)
+The source of the NuGet package
+[`IO.Github.Hcoona.Pngcs`](https://www.nuget.org/packages/IO.Github.Hcoona.Pngcs)
+now lives in hcoona/three. Report issues and send pull requests there.
+The earlier history and releases of this repository remain available.
